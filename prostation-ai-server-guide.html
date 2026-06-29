@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Choose a Custom Server for AI & Machine Learning (India, 2026)</title>
+  <meta name="description" content="Choose a custom server for AI & machine learning in India — GPU, CPU, RAM and storage considerations, and when a custom build beats pre-built.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/prostation-ai-server-guide.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    h3 { font-size:1.05rem; margin:1.4em 0 .4em; }
+    a { color:var(--accent); }
+    .cta { display:inline-block; margin:18px 8px 8px 0; padding:12px 22px; background:var(--accent); color:#fff; border-radius:10px; text-decoration:none; font-weight:700; }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { width:100%; border-collapse:collapse; margin:1em 0; font-size:.95rem; }
+    th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+    th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>How to Choose a Custom Server for AI &amp; Machine Learning (India, 2026)</h1>
+
+<p>The short answer: for serious AI and machine learning work in 2026, a made-to-order machine almost always beats an off-the-shelf box, because AI workloads are bottlenecked by GPU memory, PCIe lanes, and data throughput &mdash; the exact things pre-built systems compromise on. This guide walks through how to size each component so your <a href="https://prostationsystems.com/use-cases/ai-ml" target="_blank">server for AI and machine learning</a> matches your real workload instead of a generic spec sheet.</p>
+
+<h2>Match the build to the workload first</h2>
+
+<p>Before picking parts, be honest about what you are running. The right configuration for fine-tuning a 13B language model is very different from one serving thousands of small inference requests, or one doing classical ML on tabular data.</p>
+
+<ul>
+  <li><strong>Training / fine-tuning:</strong> GPU-bound. You want maximum VRAM and fast GPU-to-GPU links.</li>
+  <li><strong>Inference / serving:</strong> Latency and concurrency matter more than raw FLOPS; mid-range GPUs with good memory bandwidth often win on cost-per-request.</li>
+  <li><strong>Classical ML / data engineering:</strong> CPU cores, RAM, and fast NVMe storage matter more than the GPU.</li>
+  <li><strong>Computer vision pipelines:</strong> Balanced &mdash; GPU for the model, CPU and storage for decode and pre-processing.</li>
+</ul>
+
+<h2>GPU: the single most important decision</h2>
+
+<p>For AI, the question is rarely "how fast is the GPU" and more often "how much memory does it have." A model that does not fit in VRAM will either fail or spill into painfully slow system memory.</p>
+
+<h3>VRAM over headline speed</h3>
+<p>NVIDIA RTX and professional A-series cards span roughly 12GB to 80GB of VRAM. As a rough planning rule, full fine-tuning needs far more memory than inference of the same model, and quantisation (4-bit/8-bit) can shrink requirements dramatically. Plan for the largest model you realistically expect to run in the next 12 months, not just today's.</p>
+
+<h3>Single vs multi-GPU</h3>
+<p>One large-VRAM GPU is simpler and usually cheaper to run than two smaller ones, and avoids the overhead of splitting a model across cards. Go multi-GPU when a single card cannot hold your model, or when you need to train and serve in parallel. Multi-GPU builds need a motherboard with enough PCIe lanes, adequate spacing, and a power supply sized with real headroom.</p>
+
+<h2>CPU, PCIe lanes and RAM</h2>
+
+<p>The CPU rarely does the maths in deep learning, but it feeds the GPU. A starved CPU or too few PCIe lanes will cap an expensive GPU. For multi-GPU or NVMe-heavy builds, platforms like Intel Xeon or AMD EPYC/Threadripper give you the lane count and ECC support that consumer chips cannot.</p>
+
+<p>For system RAM, a practical starting point is to provision at least as much RAM as your total VRAM, and ideally 1.5&ndash;2x for data-loading-heavy pipelines. ECC RAM is strongly recommended for any machine that will run multi-hour or multi-day jobs &mdash; a single bit flip can silently corrupt a training run.</p>
+
+<h2>Storage: do not let data starve the GPU</h2>
+
+<p>AI training reads data constantly. A fast GPU paired with a slow disk will sit idle waiting for batches. A sensible layout:</p>
+
+<ul>
+  <li><strong>NVMe SSD</strong> for the active dataset and checkpoints &mdash; this is where throughput matters most.</li>
+  <li><strong>Larger SATA SSD or HDD</strong> for cold datasets and archives.</li>
+  <li><strong>RAID</strong> where uptime or capacity demands it &mdash; RAID 1 for resilience, RAID 10 where you need both speed and redundancy.</li>
+</ul>
+
+<h2>When custom beats pre-built</h2>
+
+<p>Pre-built AI desktops and servers are convenient, but they force trade-offs: fixed GPU choices, limited RAM slots, proprietary power supplies, and little room to grow. A <a href="https://prostationsystems.com/customize" target="_blank">custom server build</a> lets you put the budget where your workload actually needs it &mdash; more VRAM, more lanes, faster storage &mdash; and leave headroom to upgrade later. For most teams running real training or production inference, that targeted spend is the difference between a machine that lasts three years and one that bottlenecks in six months.</p>
+
+<p>It also helps to talk through the configuration with someone who builds these daily. The team behind <a href="https://prostationsystems.com" target="_blank">ProStation Systems</a> offers free consulting to translate a workload into a parts list, then builds and tests the machine before it ships &mdash; typically within about four working days, with a 1&ndash;3 year warranty and pan-India delivery.</p>
+
+<h2>A sensible starting point</h2>
+
+<p>If you are unsure, a balanced AI workstation often looks like: one large-VRAM NVIDIA GPU, a multi-core Xeon or Threadripper CPU, ECC RAM matched to or exceeding VRAM, a fast NVMe drive for datasets, and a power supply with real headroom. From there, you scale GPUs up for training or add storage for data-heavy pipelines. If you would rather start from a known-good base, browse the range of <a href="https://prostationsystems.com/servers" target="_blank">custom tower servers</a> and adjust from there.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<p><strong>Do I need a server, or is a workstation enough for AI?</strong> For a single user training or fine-tuning models, a tower workstation is often ideal &mdash; quieter, cheaper, and office-friendly. You move to rack servers when multiple users share the hardware, or when you need datacentre-grade density and management.</p>
+
+<p><strong>How much GPU VRAM do I actually need?</strong> It depends on model size and whether you train or infer. As a guide, inference of quantised mid-size models can run on 12&ndash;24GB, while fine-tuning larger models comfortably wants 48GB or more. Plan for your next 12 months, not just today.</p>
+
+<p><strong>Is ECC RAM really necessary for AI?</strong> For long-running training jobs, yes &mdash; it protects against silent memory errors that can corrupt a multi-hour run. For short experimental workloads it is less critical, but still recommended on any serious build.</p>
+
+<p><strong>Can I start small and upgrade later?</strong> That is a core advantage of a custom build. With the right motherboard, power supply, and chassis chosen up front, you can add GPUs, RAM, and storage as your needs grow instead of replacing the whole machine.</p>
+
+<h2>Build an AI server sized to your workload</h2>
+
+<p>Tell us what you are training or serving, and we will configure, build, and test a machine around it &mdash; no guesswork, no paying for parts you do not need. <strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87962-44410</strong> (<a href="https://wa.me/918796244410" target="_blank">wa.me/918796244410</a>), based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>. Free consultation and a tailored quote within 24 hours.</p>
+  </div>
+</body>
+</html>
