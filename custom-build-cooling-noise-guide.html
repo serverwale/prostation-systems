@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cooling &amp; Noise: Why Case Choice Matters for AI/Render Workstation Builds</title>
+  <meta name="description" content="Why chassis and cooling choice matters as much as the CPU/GPU spec for custom AI and rendering workstations — airflow, noise, and thermal throttling explained.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/custom-build-cooling-noise-guide.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Cooling &amp; Noise: Why Case Choice Matters for AI/Render Workstation Builds</h1>
+
+<p>A high-end GPU with a great airflow-starved case will throttle under sustained load &mdash; the exact scenario a multi-hour training run or render job creates. Cooling and chassis choice is not a cosmetic decision on these builds; it directly determines whether the hardware you paid for actually delivers its rated performance for hours at a time.</p>
+
+<h2>Sustained load is the real test, not benchmarks</h2>
+<p>Short benchmark runs rarely reveal thermal throttling &mdash; a GPU can boost clock for a few minutes before heat catches up. AI training and 3D rendering run for hours, sometimes days, which is exactly when undersized airflow shows up as silently lower throughput, not a crash.</p>
+
+<h2>What actually matters in case/cooling choice</h2>
+<ul>
+  <li><strong>Positive airflow path</strong> &mdash; intake and exhaust fans arranged so hot air actually leaves the case instead of recirculating around the GPU.</li>
+  <li><strong>GPU clearance and spacing</strong> &mdash; multi-GPU builds need real space between cards, not just physical slots, or the top card starves the one below it of fresh air.</li>
+  <li><strong>Dust filtration</strong> &mdash; a workstation running 24/7 in an office or lab accumulates dust fast; poor filtration means a slow thermal decline over months, not a sudden failure.</li>
+  <li><strong>Noise, if the machine sits near people</strong> &mdash; a build spec'd purely for cooling can be uncomfortably loud in a shared office; the right answer is usually larger, slower fans rather than smaller, faster ones fighting the same airflow requirement.</li>
+</ul>
+
+<h2>Where builders cut corners</h2>
+<p>The most common shortcut on pre-built AI/render machines is pairing a powerful GPU with a case designed for a much lower-power build &mdash; it looks fine on a spec sheet and throttles quietly in real use. This is one of the reasons a made-to-order build matters: chassis and fan configuration get chosen to match the actual thermal load, not picked for looks.</p>
+
+<p>We spec cooling and chassis airflow as part of every <a href="https://prostationsystems.com/customize" target="_blank">custom build</a> at ProStation Systems, matched to the GPU/CPU thermal load rather than a generic case pick. See real configuration examples for training and rendering workloads on our <a href="https://prostationsystems.com/use-cases/ai-ml" target="_blank">AI/ML use-case page</a> and <a href="https://prostationsystems.com/use-cases/video-rendering" target="_blank">rendering use-case page</a>.</p>
+
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87962-44410</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>
