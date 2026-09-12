@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PSU Sizing for Multi-GPU AI &amp; Render Workstations</title>
+  <meta name="description" content="A multi-GPU AI training or render workstation lives or dies on PSU headroom. How to actually size the power supply instead of guessing at a round number.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/psu-sizing-multi-gpu-workstation-guide.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; }
+    th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+    th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>PSU Sizing for Multi-GPU AI &amp; Render Workstations</h1>
+
+<p>A single high-end GPU already pulls 300&ndash;450W under load. Put two or three of them in one chassis for AI training or render farming, and the power supply stops being an afterthought — it becomes the component most likely to bottleneck or crash the whole build if it's undersized.</p>
+
+<h2>Add up real draw, not marketing numbers</h2>
+<p>GPU-maker "recommended PSU" figures assume a single card and a modest rest-of-system. They don't scale linearly once you add a second or third GPU, because the CPU, storage array, and fans are drawing their own separate load on top. The right way to size a PSU is to add up every component's actual rated draw, not the smallest GPU-vendor number times the GPU count.</p>
+
+<table>
+<tr><th>Component</th><th>Typical draw (multi-GPU build)</th></tr>
+<tr><td>2&ndash;3&times; high-end GPU</td><td>600&ndash;1,350W combined</td></tr>
+<tr><td>High-core-count CPU</td><td>150&ndash;280W</td></tr>
+<tr><td>NVMe/SSD array + fans/pump</td><td>40&ndash;80W</td></tr>
+<tr><td>Motherboard + RAM</td><td>60&ndash;100W</td></tr>
+</table>
+
+<h2>Then leave real headroom</h2>
+<ul>
+  <li><strong>Don't run near the rated max continuously</strong> &mdash; PSUs are least efficient and generate the most heat right at their ceiling; a sustained AI training run or overnight render is exactly the continuous-load scenario where this matters most.</li>
+  <li><strong>Transient power spikes are real</strong> &mdash; GPUs under load draw brief spikes well above their steady-state number; a PSU sized to the exact steady-state total can still trip on a spike it never "should" have hit on paper.</li>
+  <li><strong>Multi-GPU needs the right connectors, not just the right wattage</strong> &mdash; enough independent PCIe power cables/rails to feed every card without daisy-chaining connectors meant for one GPU across two.</li>
+</ul>
+
+<h2>Platinum/Titanium efficiency pays for itself here</h2>
+<p>A workstation that runs multi-hour training jobs or render queues draws near-peak power for long stretches, not in short bursts like a typical desktop. A few points of PSU efficiency compounds into a real difference in heat output and electricity cost over months of near-continuous use — worth the premium on a build that's actually going to run like this.</p>
+
+<p>Every ProStation <a href="https://prostationsystems.com/use-cases/ai-ml" target="_blank">AI/ML workstation</a> and <a href="https://prostationsystems.com/use-cases/video-rendering" target="_blank">render build</a> is PSU-sized against the real component list, not a rounded-up guess — including connector count and continuous-load headroom. <a href="https://prostationsystems.com/customize" target="_blank">Configure your build</a> or talk to us via a <a href="https://prostationsystems.com/consulting" target="_blank">free consulting call</a> if you're planning a multi-GPU rig.</p>
+
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87968-22044</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>

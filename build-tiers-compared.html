@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starter vs Pro vs Ultra: ProStation Build Tiers Compared</title>
+  <meta name="description" content="A visual comparison of ProStation's three configurable build tiers — Starter, Pro and Ultra — by CPU, RAM, storage, GPU and networking.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/build-tiers-compared.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    figure { margin:1.4em 0; padding:14px; border:1px solid var(--line); border-radius:10px; background:var(--card); }
+    figcaption { font-size:.85rem; color:var(--muted); margin-top:10px; text-align:center; }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Starter vs Pro vs Ultra: ProStation Build Tiers Compared</h1>
+
+<p>Every ProStation build is fully custom-configured, but three starting tiers cover most requests: <strong>Starter</strong>, <strong>Pro</strong> and <strong>Ultra</strong>. They're a starting point to request-a-config from, not a locked menu — any spec can be adjusted for the exact workload.</p>
+
+<h2>The three tiers at a glance</h2>
+<figure>
+<svg viewBox="0 0 780 340" width="100%" role="img" aria-label="Chart comparing ProStation's Starter, Pro and Ultra build tiers across CPU, RAM, storage, GPU and networking">
+<style>
+.hd{font:700 14px -apple-system,Segoe UI,sans-serif;fill:#E8EAED}
+.rl{font:600 12.5px -apple-system,Segoe UI,sans-serif;fill:#9aa1ad}
+.val{font:600 10.8px -apple-system,Segoe UI,sans-serif;fill:#fff}
+</style>
+<text x="220" y="26" class="hd" text-anchor="middle">Starter</text>
+<text x="430" y="26" class="hd" text-anchor="middle">Pro</text>
+<text x="640" y="26" class="hd" text-anchor="middle">Ultra</text>
+
+<text x="10" y="74" class="rl">CPU</text>
+<rect x="135" y="56" width="170" height="26" rx="5" fill="#3B3550"/><text x="220" y="73" class="val" text-anchor="middle">Entry Xeon / EPYC</text>
+<rect x="345" y="56" width="170" height="26" rx="5" fill="#5B3F82"/><text x="430" y="73" class="val" text-anchor="middle">Xeon Scalable / EPYC Milan</text>
+<rect x="555" y="56" width="170" height="26" rx="5" fill="#8B5CF6"/><text x="640" y="73" class="val" text-anchor="middle">Dual Xeon / EPYC Genoa</text>
+
+<text x="10" y="134" class="rl">RAM</text>
+<rect x="135" y="116" width="170" height="26" rx="5" fill="#3B3550"/><text x="220" y="133" class="val" text-anchor="middle">16–64GB ECC</text>
+<rect x="345" y="116" width="170" height="26" rx="5" fill="#5B3F82"/><text x="430" y="133" class="val" text-anchor="middle">64–256GB ECC</text>
+<rect x="555" y="116" width="170" height="26" rx="5" fill="#8B5CF6"/><text x="640" y="133" class="val" text-anchor="middle">256–512GB ECC</text>
+
+<text x="10" y="194" class="rl">Storage</text>
+<rect x="135" y="176" width="170" height="26" rx="5" fill="#3B3550"/><text x="220" y="193" class="val" text-anchor="middle">1TB NVMe</text>
+<rect x="345" y="176" width="170" height="26" rx="5" fill="#5B3F82"/><text x="430" y="193" class="val" text-anchor="middle">2TB NVMe + HDD</text>
+<rect x="555" y="176" width="170" height="26" rx="5" fill="#8B5CF6"/><text x="640" y="193" class="val" text-anchor="middle">4TB+ NVMe (RAID)</text>
+
+<text x="10" y="254" class="rl">GPU</text>
+<rect x="135" y="236" width="170" height="26" rx="5" fill="#3B3550"/><text x="220" y="253" class="val" text-anchor="middle">Optional</text>
+<rect x="345" y="236" width="170" height="26" rx="5" fill="#5B3F82"/><text x="430" y="253" class="val" text-anchor="middle">Optional NVIDIA RTX</text>
+<rect x="555" y="236" width="170" height="26" rx="5" fill="#8B5CF6"/><text x="640" y="253" class="val" text-anchor="middle">RTX / A-series / Tesla</text>
+
+<text x="10" y="314" class="rl">Network</text>
+<rect x="135" y="296" width="170" height="26" rx="5" fill="#3B3550"/><text x="220" y="313" class="val" text-anchor="middle">1GbE / 10GbE</text>
+<rect x="345" y="296" width="170" height="26" rx="5" fill="#5B3F82"/><text x="430" y="313" class="val" text-anchor="middle">10GbE / 25GbE</text>
+<rect x="555" y="296" width="170" height="26" rx="5" fill="#8B5CF6"/><text x="640" y="313" class="val" text-anchor="middle">25GbE</text>
+</svg>
+<figcaption>Starting specs for each tier — every build is configured to the exact workload from here.</figcaption>
+</figure>
+
+<h2>Who each tier actually fits</h2>
+<ul>
+  <li><strong>Starter</strong> &mdash; small-business file servers, basic apps, light web hosting.</li>
+  <li><strong>Pro</strong> &mdash; virtualization, databases, mid-range workloads and growing teams. Most requested tier.</li>
+  <li><strong>Ultra</strong> &mdash; AI/ML training, rendering and heavy compute where dual-CPU and multi-GPU headroom actually gets used.</li>
+</ul>
+
+<p>None of these are fixed configurations — request a tier as a starting point and adjust CPU, RAM, storage or GPU to the exact workload. <a href="https://prostationsystems.com/customize?tier=starter" target="_blank">Start from Starter</a>, <a href="https://prostationsystems.com/customize?tier=pro" target="_blank">Pro</a>, or <a href="https://prostationsystems.com/customize?tier=ultra" target="_blank">Ultra</a>, or talk to us via a <a href="https://prostationsystems.com/consulting" target="_blank">free consulting call</a> if you're not sure which fits.</p>
+
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87968-22044</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>
