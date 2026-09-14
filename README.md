@@ -8,7 +8,7 @@
 <p align="center">
   🌐 <a href="https://prostationsystems.com"><strong>prostationsystems.com</strong></a> &nbsp;·&nbsp;
   🛠️ <a href="https://prostationsystems.com/customize">Configure your build</a> &nbsp;·&nbsp;
-  📞 +91-87962-44410
+  📞 +91-87968-22044
 </p>
 
 ---
@@ -52,7 +52,7 @@ Explore all [industries we serve →](https://prostationsystems.com/industries)
 
 ProStation Systems is the in-house custom-build brand of **[Serverwale](https://serverwale.com)**, India's trusted source for certified refurbished servers, workstations & GPU solutions.
 
-📍 Burari, New Delhi 110084, India &nbsp;·&nbsp; 📞 +91-87962-44410 &nbsp;·&nbsp; 🌐 [prostationsystems.com](https://prostationsystems.com)
+📍 Burari, New Delhi 110084, India &nbsp;·&nbsp; 📞 +91-87968-22044 &nbsp;·&nbsp; 🌐 [prostationsystems.com](https://prostationsystems.com)
 
 ---
 

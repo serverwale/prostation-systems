@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPMI Explained: Why Every ProStation Server Has Remote Management Built In</title>
+  <meta name="description" content="What IPMI/BMC out-of-band management actually does, why it matters once a server isn't sitting on your own desk, and why ProStation builds it in by default.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/ipmi-remote-management-explained.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>IPMI Explained: Why Every ProStation Server Has Remote Management Built In</h1>
+
+<p>A workstation on your desk is easy to fix — walk over, look at the screen, press the power button. A server in a rack room, a colocation facility, or just a different floor of the office is a different problem entirely: if the OS hangs or won't boot, you can't see a screen that isn't there. IPMI (Intelligent Platform Management Interface) solves this by giving the server a second, independent computer inside it — the BMC (Baseboard Management Controller) — that stays powered and reachable over the network even when the main system is off, frozen, or won't POST.</p>
+
+<h2>What you can actually do with it</h2>
+<ul>
+  <li><strong>See the screen remotely</strong> &mdash; a full remote console (KVM-over-IP), from BIOS/UEFI screens onward, not just after the OS has booted.</li>
+  <li><strong>Power-cycle a hung server</strong> &mdash; a hard reset or power-off/power-on, without anyone physically present.</li>
+  <li><strong>Mount installation media remotely</strong> &mdash; attach an ISO over the network to reinstall or repair an OS without a USB stick and a site visit.</li>
+  <li><strong>Read hardware health independent of the OS</strong> &mdash; fan speed, temperatures, PSU status and voltage readings come straight from the BMC, so a monitoring failure inside a crashed OS doesn't blind you to a real hardware problem.</li>
+</ul>
+
+<h2>Why this matters more once a server isn't in the room with you</h2>
+<p>The value of IPMI scales with distance and downtime cost. A workstation under your own desk barely needs it. A server at a colocation facility two cities away, or simply in a locked server room after hours, turns "just walk over and check" into a truck roll or a wasted night waiting for someone with a key. Out-of-band management is what keeps a 2 AM hang from becoming a 9 AM problem.</p>
+
+<h2>Not the same as a remote-desktop tool</h2>
+<p>Software like TeamViewer or AnyDesk only works once the OS has already booted and is running normally — exactly the case where IPMI isn't needed. IPMI's whole point is covering the cases software-based remote access can't reach: a frozen boot, a corrupted OS, a server that's fully powered off. The two are complementary, not interchangeable — most ProStation deployments use both, remote-desktop tools day-to-day and IPMI as the fallback when something's actually wrong.</p>
+
+<p>Every ProStation Systems server ships with a server-grade motherboard and IPMI remote management built in, not as an add-on — see it listed across our <a href="https://prostationsystems.com/servers" target="_blank">Starter, Pro and Ultra tiers</a>, or talk to us via a <a href="https://prostationsystems.com/consulting" target="_blank">free consulting call</a> about whether your deployment needs on-site or remote hands for day-one setup.</p>
+
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87968-22044</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>
