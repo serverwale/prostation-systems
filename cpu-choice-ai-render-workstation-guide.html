@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intel vs AMD for a Custom AI &amp; Render Workstation: Choosing the Right CPU</title>
+  <meta name="description" content="Intel Core/Xeon W vs AMD Threadripper/Ryzen for a custom AI training or render workstation — cores, PCIe lanes, ECC and when each platform actually wins.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/cpu-choice-ai-render-workstation-guide.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; }
+    th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+    th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Intel vs AMD for a Custom AI &amp; Render Workstation: Choosing the Right CPU</h1>
+
+<p>For a single high-performance workstation — not a server rack — the CPU decision comes down to how many PCIe lanes your GPU(s) need, how many cores your software actually uses, and whether you need ECC memory. Intel's workstation-class chips (Core X-series, Xeon W) and AMD's (Threadripper, Ryzen) split those trade-offs differently, and the right answer depends on your workload, not brand preference.</p>
+
+<h2>PCIe lanes decide your GPU ceiling first</h2>
+<p>Every GPU needs a full x16 (or at least x8) PCIe slot to run at full bandwidth. A mainstream desktop chip — Intel Core or AMD Ryzen — typically has enough lanes for one GPU comfortably, maybe two if you're willing to run the second at reduced bandwidth. If your build needs two or more full-bandwidth GPUs, that's the point where AMD Threadripper or Intel Xeon W's much higher lane count stops being a nice-to-have and becomes the actual requirement — running out of lanes bottlenecks a second or third card no matter how fast the GPU itself is.</p>
+
+<h2>Core count: match it to what your software uses</h2>
+<ul>
+  <li><strong>Single-GPU AI training / inference</strong> — the GPU does almost all the work; a high-clock 8-16 core chip is usually enough, extra cores beyond that rarely speed up training itself.</li>
+  <li><strong>CPU-based rendering (some render engines) or heavy multitasking during a render queue</strong> — this is where high core-count Threadripper-class chips genuinely pay off, since render engines that use the CPU scale near-linearly with core count.</li>
+  <li><strong>3D/CAD work with a single active viewport</strong> — often bottlenecked by single-thread clock speed more than core count — don't over-buy cores for this use case.</li>
+</ul>
+
+<h2>ECC memory support</h2>
+<p>Workstation-class platforms (Xeon W, Threadripper Pro) support ECC (error-correcting) memory; mainstream desktop platforms (Ryzen, most Core desktop chips) generally don't. ECC matters most for long unattended training or render jobs where a single flipped memory bit corrupting hours of work is a real cost — it matters much less for a workstation used interactively where you'd notice and re-run a bad result quickly.</p>
+
+<h2>Side-by-side</h2>
+<table>
+<tr><th>Factor</th><th>Mainstream (Core / Ryzen)</th><th>Workstation-class (Xeon W / Threadripper)</th></tr>
+<tr><td>PCIe lanes</td><td>Enough for 1 full-bandwidth GPU</td><td>Enough for 2-4+ full-bandwidth GPUs</td></tr>
+<tr><td>Max cores</td><td>Lower</td><td>Much higher — matters for CPU-bound render engines</td></tr>
+<tr><td>ECC memory</td><td>Usually unsupported</td><td>Supported</td></tr>
+<tr><td>Best fit</td><td>Single-GPU AI/render, CAD, general workstation use</td><td>Multi-GPU training rigs, CPU-heavy render farms, long unattended jobs</td></tr>
+</table>
+
+<h2>The practical rule of thumb</h2>
+<p>If your build has one GPU and your software is GPU-bound (most AI training and GPU-accelerated rendering), a mainstream platform is usually the right call and saves real money. If you're running two or more full-bandwidth GPUs, a CPU-heavy render engine, or long unattended jobs where ECC matters, step up to a workstation-class platform — the lane count and core count aren't optional at that point, they're the actual bottleneck.</p>
+
+<p>Every ProStation <a href="https://prostationsystems.com/use-cases/ai-ml" target="_blank">AI/ML workstation</a> and <a href="https://prostationsystems.com/use-cases/video-rendering" target="_blank">render build</a> is specced against your real GPU count and software, not a default CPU tier. <a href="https://prostationsystems.com/customize" target="_blank">Configure your build</a> or talk to us via a <a href="https://prostationsystems.com/consulting" target="_blank">free consulting call</a> if you're not sure which platform your workload actually needs.</p>
+
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87968-22044</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>

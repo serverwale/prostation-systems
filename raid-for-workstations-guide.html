@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAID for Workstations: When a Single Custom Build Needs Redundant Storage</title>
+  <meta name="description" content="Does a custom AI, render or workstation build need RAID? When drive redundancy actually matters on a single-machine build, and when it's unnecessary cost.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/raid-for-workstations-guide.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; }
+    th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+    th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>RAID for Workstations: When a Single Custom Build Needs Redundant Storage</h1>
+
+<p>RAID is usually discussed in the context of servers, but the same question applies to a single powerful workstation: if one drive fails, what do you actually lose? For most workstation builds the honest answer is "time and inconvenience, not irreplaceable data" — which means RAID is worth adding for some workloads and genuinely unnecessary cost for others.</p>
+
+<h2>What RAID actually protects against — and what it doesn't</h2>
+<p>RAID (mirroring or parity across multiple drives) protects against a single physical drive failure without downtime or data loss from that drive. It does not protect against accidental deletion, ransomware, or a corrupted file being saved over a good one — those failures write to every mirrored drive identically. RAID is uptime and physical-failure insurance, not a substitute for backup.</p>
+
+<h2>When RAID is worth it on a workstation</h2>
+<ul>
+  <li><strong>Active project files with no other live copy.</strong> If a render project, AI dataset, or CAD file only exists on the workstation's local drive while you're working on it, a mirrored pair (RAID 1) means a single drive failure doesn't cost you the in-progress work.</li>
+  <li><strong>Long unattended jobs.</strong> An overnight training run or multi-hour render queue that would need to restart from scratch after a drive failure is exactly the scenario RAID's uptime protection is built for.</li>
+  <li><strong>A workstation doubling as the only copy of client deliverables</strong> before they're exported or backed up elsewhere.</li>
+</ul>
+
+<h2>When RAID is unnecessary cost</h2>
+<ul>
+  <li><strong>The OS/boot drive on most single-user workstations.</strong> A boot drive failure means a reinstall, not lost work, as long as project data lives elsewhere or is backed up — mirroring it protects convenience, not data.</li>
+  <li><strong>Any drive whose real content already lives somewhere else.</strong> If the source data is on a NAS, cloud storage, or a team server and the workstation only holds a working copy, RAID on the workstation is redundant redundancy.</li>
+  <li><strong>Pure scratch/cache drives.</strong> Temp render caches or scratch disks are disposable by design — RAID here protects nothing that matters.</li>
+</ul>
+
+<h2>A simple decision table</h2>
+<table>
+<tr><th>Drive's job</th><th>RAID worth it?</th></tr>
+<tr><td>OS / boot drive, backed up or reinstallable</td><td>No</td></tr>
+<tr><td>Active project files, no other live copy</td><td>Yes — RAID 1 mirror</td></tr>
+<tr><td>Long unattended training/render job storage</td><td>Yes</td></tr>
+<tr><td>Scratch/cache/temp drive</td><td>No</td></tr>
+<tr><td>Working copy of data that lives on a NAS/server too</td><td>No — the NAS is the redundancy</td></tr>
+</table>
+
+<h2>RAID is not a backup — on a workstation either</h2>
+<p>The same rule that applies to servers applies here: RAID protects against one kind of failure (a dead drive), not against deletion, ransomware, or a bad overwrite. If a project genuinely can't be re-created, it needs an actual backup — to a <a href="https://prostationsystems.com/use-cases/storage-backup" target="_blank">NAS or storage server</a>, not just a mirrored pair inside the same workstation.</p>
+
+<p>Every ProStation build is configured with the storage layout your workload actually needs — including whether RAID belongs on it at all — not a default template. <a href="https://prostationsystems.com/customize" target="_blank">Configure your build</a> or talk to us via a <a href="https://prostationsystems.com/consulting" target="_blank">free consulting call</a> if you're not sure which drives in your build need redundancy.</p>
+
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87968-22044</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>
