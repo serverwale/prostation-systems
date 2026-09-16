@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What a VFX & Post-Production Studio Actually Needs From a Workstation</title>
+  <meta name="description" content="Render node or grading station? What VFX and post-production studios should actually spec for — GPU choice, sustained-load cooling, and storage for active projects.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/vfx-post-production-workstation-guide.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; }
+    th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+    th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>What a VFX & Post-Production Studio Actually Needs From a Workstation</h1>
+
+<p>"VFX workstation" covers two genuinely different machines, and studios often spec the wrong one for the job: a <strong>render node</strong> that needs to sustain full GPU load for hours without throttling, and a <strong>grading/compositing station</strong> that needs a fast single-GPU pipeline, colour-accurate output and low-latency scrubbing through large timelines. Building one machine to do both usually means it's mediocre at each.</p>
+
+<h2>Render nodes: the bottleneck is sustained load, not peak power</h2>
+<p>A render node in Blender, Octane, Redshift or V-Ray often runs unattended for hours. The number that matters isn't the GPU's rated boost clock — it's whether the machine holds that clock for the full duration. That comes down to case airflow, fan curve tuning and power delivery headroom, not just buying a faster card. A render node that throttles 20 minutes into an overnight job effectively becomes a slower, more expensive GPU.</p>
+
+<h2>Grading and compositing: latency and colour accuracy over raw throughput</h2>
+<p>DaVinci Resolve grading and compositing work is more sensitive to storage latency and RAM headroom than to GPU count — scrubbing a high-resolution timeline needs fast NVMe and enough system memory to hold caches without dropping to disk. A single strong GPU with a colour-accurate display pipeline typically serves a grading artist better than splitting a budget across multiple GPUs meant for rendering.</p>
+
+<h2>Storage: project files vs render output</h2>
+<table>
+<tr><th>Data</th><th>What it needs</th></tr>
+<tr><td>Active project / timeline files being edited</td><td>Fast NVMe, low latency</td></tr>
+<tr><td>Render output / cache</td><td>High-capacity storage, sequential speed matters more than latency</td></tr>
+<tr><td>Delivered client masters</td><td>Backed up off the workstation, not just stored locally</td></tr>
+</table>
+<p>Mixing these roles onto one drive is a common cause of a workstation feeling slow under load even when the GPU is fast — the drive is doing two jobs with conflicting access patterns.</p>
+
+<h2>Why this matters for sizing a studio purchase</h2>
+<p>Studios buying multiple machines for a pipeline get better value speccing render nodes and grading stations differently rather than buying identical "do everything" boxes for both roles. A render farm of 3-4 nodes plus 1-2 grading stations, each spec'd for its actual job, usually costs about the same as uniform high-end boxes across the board — and performs better at both jobs.</p>
+
+<p>ProStation Systems builds both kinds of machines to order — multi-GPU render nodes validated under 48-hour burn-in so they hold clocks for real production loads, and single-GPU grading workstations tuned for Resolve. See what we build for <a href="https://prostationsystems.com/industries/studios-vfx" target="_blank">studios &amp; VFX</a>, browse <a href="https://prostationsystems.com/use-cases/video-rendering" target="_blank">video &amp; rendering builds</a>, or <a href="https://prostationsystems.com/customize" target="_blank">configure your build</a>. Not sure which of the two your studio needs first — talk it through on a <a href="https://prostationsystems.com/consulting" target="_blank">free consulting call</a>.</p>
+
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87968-22044</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>
