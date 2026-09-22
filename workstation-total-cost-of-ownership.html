@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Total Cost of Ownership: Buying vs Renting Compute</title>
+  <meta name="description" content="The sticker price of a workstation is not its real cost, and a rental's per-hour rate is not its real cost either. A framework for comparing what owning vs renting compute actually costs over time.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/workstation-total-cost-of-ownership.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; }
+    th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+    th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Total Cost of Ownership: Buying vs Renting Compute</h1>
+
+<p>Comparing a workstation's purchase price against a cloud rental's per-hour rate is comparing two different, incomplete numbers. Neither is what the option actually costs a team over a year of real use — and the comparison that matters depends entirely on how continuously the hardware runs, not just how much it costs to acquire.</p>
+
+<h2>What "owning" actually costs beyond the invoice</h2>
+<ul>
+  <li><strong>Electricity</strong> — a workstation running near-continuous AI training or render jobs draws power the whole time it's working, not just during business hours.</li>
+  <li><strong>Depreciation</strong> — hardware has a useful life before it's meaningfully behind current generations; that life is part of the real cost, spread across however long it's actually used.</li>
+  <li><strong>Support and failure risk</strong> — what a hardware fault costs in downtime and repair time if there's no warranty backing it, versus what it costs when there is.</li>
+  <li><strong>Idle time still has a cost</strong> — hardware sitting unused overnight or between projects has already been paid for; that's sunk cost, not zero cost.</li>
+</ul>
+
+<h2>What "renting" actually costs beyond the sticker rate</h2>
+<ul>
+  <li><strong>The advertised per-hour/per-month rate is a floor, not the total</strong> — data egress, storage attached to the instance, and add-on services are typically billed separately from the headline compute rate.</li>
+  <li><strong>Utilization has to be genuinely high to win</strong> — a rented GPU instance is billed whether or not it's actually training something in a given hour; low utilization is where rental economics quietly get worse, not better.</li>
+  <li><strong>No control over availability or pricing</strong> — capacity and rates are set by the provider, not the renter, which matters for planning a multi-month project around a fixed budget.</li>
+</ul>
+
+<h2>The real question is utilization, not price-per-unit</h2>
+<p>The honest way to compare the two is to estimate actual hours of real use per month, not the headline price. A machine used for a few hours a week is usually cheaper to rent, because most of the ownership cost above goes unused. A machine that's genuinely busy most working hours — a shared team resource, a continuously-running training or render queue — accumulates rental hours fast enough that ownership's fixed cost is spread across far more real usage, which is the scenario where owning tends to win over a multi-year horizon.</p>
+
+<table>
+<tr><th>Usage pattern</th><th>Tends to favor</th></tr>
+<tr><td>Occasional, short bursts (a few hours a week)</td><td>Renting — ownership's idle cost dominates</td></tr>
+<tr><td>Sustained, near-continuous use over months</td><td>Owning — rental hours accumulate faster than a fixed asset's spread-out cost</td></tr>
+<tr><td>Uncertain / short-term project with an unclear end date</td><td>Renting — avoids committing capital before scope is settled</td></tr>
+<tr><td>Ongoing team resource used indefinitely</td><td>Owning — the calculation resets and favors ownership every additional year it stays in service</td></tr>
+</table>
+
+<h2>Warranty changes the "owning" side of the math directly</h2>
+<p>The single biggest wildcard in an ownership estimate is what a hardware failure costs — in downtime, not just repair. A build backed by a real warranty converts an unpredictable, potentially large cost into a known, bounded one. ProStation's <a href="https://prostationsystems.com/warranty" target="_blank">warranty tiers</a> run from a 1-year standard through 3-year premium coverage with priority response and on-site visits, specifically so this side of the ownership estimate is a known number, not a guess.</p>
+
+<p>If you're weighing a dedicated build against a rented instance for an ongoing workload, a <a href="https://prostationsystems.com/consulting" target="_blank">free consulting call</a> is the fastest way to size the real usage pattern rather than compare two numbers that were never measuring the same thing. See how this plays out for <a href="https://prostationsystems.com/use-cases/ai-ml" target="_blank">AI/ML</a> and <a href="https://prostationsystems.com/use-cases/video-rendering" target="_blank">rendering</a> workloads specifically, or <a href="https://prostationsystems.com/customize" target="_blank">configure a build</a>.</p>
+
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87968-22044</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>
