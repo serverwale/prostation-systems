@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Calculate the Cost of Server Downtime: A Simple Formula</title>
+  <meta name="description" content="A simple formula to calculate what one hour of server downtime costs your business, with a worked example and how repair time (MTTR) changes the total.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/server-downtime-cost-formula-guide.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; } th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>How to Calculate the Cost of Server Downtime: A Simple Formula</h1>
+
+<p>The cost of a server outage is easy to work out yourself: <strong>downtime cost = (lost revenue per hour + idle staff cost per hour) &times; hours down + recovery cost</strong>. The hours it takes to fix the problem &mdash; MTTR, mean time to repair &mdash; is the number you can most influence, through backups, spares, support contracts and warranty. Here is how to work out your own figure without relying on generic industry averages.</p>
+
+<h2>Why to avoid generic &ldquo;average downtime&rdquo; figures</h2>
+<p>Most published averages come from large enterprises in other markets and rarely say whose revenue or team size they describe. Your own revenue, payroll and past incidents give a far more useful number.</p>
+
+<h2>The three parts of downtime cost</h2>
+<table>
+<thead><tr><th>Part</th><th>What it covers</th><th>How to estimate</th></tr></thead>
+<tbody>
+<tr><td>Lost revenue</td><td>Sales or billable work that cannot happen while the system is down</td><td>Average revenue per working hour, for systems tied to sales</td></tr>
+<tr><td>Idle staff cost</td><td>People who cannot work because the system is unavailable</td><td>People blocked &times; their fully-loaded hourly cost</td></tr>
+<tr><td>Recovery cost</td><td>IT time, replacement parts, emergency callouts, overtime</td><td>Cost of your last few incidents or a vendor&rsquo;s quoted rate</td></tr>
+</tbody>
+</table>
+<p>An internal file server may have no direct revenue loss, but almost every server has at least one of these costs.</p>
+
+<h2>A worked example (hypothetical &mdash; use your own numbers)</h2>
+<p>This is an illustration of the arithmetic, not data about a real business. A 12-person design studio&rsquo;s file server goes down for 6 working hours. Eight people are blocked, each costing about &#8377;500 an hour fully loaded, so idle cost is &#8377;4,000 an hour. No revenue is tied directly to the server. Recovery costs a flat &#8377;5,000 callout.</p>
+<p><strong>Total = (&#8377;4,000 &times; 6 hours) + &#8377;5,000 = &#8377;29,000</strong> for one incident. If a better support arrangement cut the same incident to 2 hours, the total would be (&#8377;4,000 &times; 2) + &#8377;5,000 = &#8377;13,000.</p>
+
+<h2>Reducing the hours: where MTTR comes from</h2>
+<p>Once you know the hourly figure, the value of anything that shortens repairs becomes measurable. Levers include spare parts on hand, redundant components such as <a href="ipmi-remote-management-explained.html">remote management</a> for diagnosis without a site visit, <a href="raid-for-workstations-guide.html">RAID</a> to survive a disk failure, and a warranty or support plan with a fast response. A warranty does not stop failures, but it controls how quickly they are resolved. For the wider ownership picture see <a href="workstation-total-cost-of-ownership.html">total cost of ownership</a>, and for what to ask a builder see <a href="custom-workstation-warranty-rma-guide.html">warranty and RMA on a custom build</a>.</p>
+
+<h2>Turn the number into a decision</h2>
+<ul>
+  <li><strong>Low downtime cost, or a working fallback:</strong> a standard warranty may be enough.</li>
+  <li><strong>Several people or a revenue system depend on the server:</strong> weigh the cost of a faster-response plan against the hourly figure you calculated.</li>
+  <li><strong>Very high hourly cost:</strong> consider redundancy such as <a href="https://prostationsystems.com/blog/redundant-power-supply-dual-psu-server-guide" target="_blank">dual power supplies</a> and a tested backup as well as faster support.</li>
+</ul>
+<p>ProStation Systems&rsquo; <a href="https://prostationsystems.com/warranty" target="_blank">warranty plans</a> come in Standard, Extended and Premium tiers, and our longer <a href="https://prostationsystems.com/blog/cost-of-server-downtime-warranty-guide" target="_blank">server downtime cost guide</a> maps each tier to repair time. Small teams can start with the <a href="https://prostationsystems.com/use-cases/small-business" target="_blank">small-business server</a> page, then use the <a href="https://prostationsystems.com/customize" target="_blank">configurator</a> or <a href="https://prostationsystems.com/consulting" target="_blank">free consulting</a> to size a build.</p>
+
+<h2>FAQ</h2>
+<ul>
+  <li><strong>What is MTTR?</strong> &mdash; Mean time to repair: the average hours it takes to get a failed system working again.</li>
+  <li><strong>How do I calculate hourly downtime cost?</strong> &mdash; Add lost revenue per hour and idle staff cost per hour (people blocked &times; fully-loaded hourly cost).</li>
+  <li><strong>Does an internal server have downtime cost?</strong> &mdash; Yes: staff idle time and recovery cost, even if no sales depend on it directly.</li>
+  <li><strong>Does a warranty reduce downtime?</strong> &mdash; It cannot prevent a failure, but response time and on-site cover shorten how long a failure lasts.</li>
+</ul>
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87968-22044</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>
