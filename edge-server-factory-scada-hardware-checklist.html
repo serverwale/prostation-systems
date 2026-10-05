@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edge Server for Factory SCADA: Hardware Checklist</title>
+  <meta name="description" content="The hardware an edge server for factory IoT and SCADA needs: ECC, RAID, redundant PSUs, IPMI, cooling and a dedicated OT network port. A quick checklist.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/edge-server-factory-scada-hardware-checklist.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; } th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Edge Server for Factory SCADA: Hardware Checklist</h1>
+<p>A factory SCADA or IoT monitoring server is a reliability machine first and a performance machine second. It sits near the equipment, runs around the clock and logs data that is hard to recreate. This is a short hardware checklist; the full reasoning is in ProStation's <a href="https://prostationsystems.com/blog/edge-server-factory-iot-scada-monitoring-guide" target="_blank">edge server guide for factory IoT and SCADA</a>.</p>
+
+<h2>Why it runs on-site</h2>
+<p>Edge computing means processing data close to where it is generated. SCADA polling PLCs and HMI panels that must show an operator the current state of a machine cannot depend on a round trip to a distant cloud. Operational technology (OT) networks are also commonly kept separate from the office IT network as a basic security practice, so a server on the OT side with its own network interface fits that design.</p>
+
+<h2>The hardware checklist</h2>
+<table>
+<thead><tr><th>Requirement</th><th>Why it matters on a factory floor</th><th>Read more</th></tr></thead>
+<tbody>
+<tr><td>ECC memory</td><td>A historian writes sensor data for years without restart; ECC corrects single-bit errors before they reach the database</td><td><a href="ecc-ram-explained.html">ECC RAM explained</a></td></tr>
+<tr><td>RAID-protected storage</td><td>Years of tag history should survive a single drive failure (RAID 1, 5 or 10 depending on history size and query speed)</td><td><a href="raid-for-workstations-guide.html">RAID guide</a></td></tr>
+<tr><td>Redundant power supplies</td><td>Motor start-ups and heavy machinery can disturb power; dual PSUs on two circuits keep monitoring up</td><td><a href="https://prostationsystems.com/blog/redundant-power-supply-dual-psu-server-guide" target="_blank">Dual PSU guide</a></td></tr>
+<tr><td>IPMI / BMC</td><td>A cabinet server is not visited daily; remote power-cycle and diagnostics work even when the OS is unresponsive</td><td><a href="ipmi-remote-management-explained.html">IPMI explained</a></td></tr>
+<tr><td>Cooling for continuous load</td><td>Steady load in a warmer, dustier room for years</td><td><a href="custom-build-cooling-noise-guide.html">Cooling and noise</a></td></tr>
+<tr><td>Dedicated OT network port</td><td>Keeps the control network physically separate from the office network</td><td><a href="10gbe-networking-workstation-guide.html">Networking guide</a></td></tr>
+</tbody>
+</table>
+
+<h2>Sizing by scope</h2>
+<table>
+<thead><tr><th>Scope</th><th>Typical build direction</th></tr></thead>
+<tbody>
+<tr><td>One line or cell, modest tag count</td><td>Starter: entry Xeon E or EPYC, 16&ndash;64&nbsp;GB ECC, 1&nbsp;TB NVMe</td></tr>
+<tr><td>Plant-wide SCADA, larger historian, possibly virtualised with other plant services</td><td>Pro: Xeon Scalable or EPYC Milan, 64&ndash;256&nbsp;GB ECC, RAID storage; see <a href="prostation-virtualization-server.html">virtualization server</a></td></tr>
+<tr><td>Edge analytics or predictive maintenance alongside SCADA</td><td>Ultra: dual Xeon Scalable or EPYC Genoa, 256&ndash;512&nbsp;GB ECC, NVMe RAID, GPU option</td></tr>
+</tbody>
+</table>
+<p>These are the ProStation tiers; compare them in <a href="build-tiers-compared.html">build tiers compared</a>. Total cost matters more than sticker price for a server that cannot fail quietly; see <a href="workstation-total-cost-of-ownership.html">total cost of ownership</a> and <a href="server-downtime-cost-formula-guide.html">how to calculate the cost of downtime</a>.</p>
+
+<h2>New for the live server, refurbished for the archive</h2>
+<p>The server that talks to live equipment is where downtime has a measurable cost, so ProStation builds it brand-new with a <a href="https://prostationsystems.com/warranty" target="_blank">warranty and 24/7 support</a>. A long-term archive of historian data that is not queried in real time is a different risk, and a tested refurbished NAS from sister brand <a href="https://serverwale.com/refurbished-servers-india" target="_blank">Serverwale</a> can keep it at lower cost.</p>
+
+<h2>Next step</h2>
+<p>Use the <a href="https://prostationsystems.com/customize" target="_blank">configurator</a> or book <a href="https://prostationsystems.com/consulting" target="_blank">free consulting</a> and share your tag count, history length and network layout. ProStation also lists <a href="https://prostationsystems.com/use-cases/virtualization" target="_blank">virtualization servers</a> for consolidating plant services on one host.</p>
+
+<h2>FAQ</h2>
+<ul>
+  <li><strong>Why not run SCADA in the cloud?</strong> &mdash; Real-time HMI display and control loops need low, predictable latency and a connection to the local OT network; a cloud round trip adds variable delay.</li>
+  <li><strong>Is ECC memory necessary?</strong> &mdash; For a historian logging continuously for years, ECC protects the data from silent memory errors.</li>
+  <li><strong>Do I need redundant power supplies?</strong> &mdash; They are strongly advised where power is noisy; ideally feed them from two circuits.</li>
+  <li><strong>Can ProStation build one?</strong> &mdash; Yes, as a custom build sized to your scope.</li>
+</ul>
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87968-22044</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>

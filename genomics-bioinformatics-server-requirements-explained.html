@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genomics &amp; Bioinformatics Server Requirements Explained</title>
+  <meta name="description" content="RAM, CPU, storage and GPU requirements for a genomics server, taken from BWA-MEM2, NVIDIA Parabricks and published storage ranges. A quick reference for labs.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/genomics-bioinformatics-server-requirements-explained.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; } th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Genomics &amp; Bioinformatics Server Requirements Explained</h1>
+<p>Genomics pipelines are limited by three things: how many CPU threads you can throw at alignment and variant calling, how much RAM the biggest step needs, and how much storage the data takes. A GPU is optional. This is a quick reference to the published numbers, so you can size a bioinformatics server from facts rather than guesses.</p>
+
+<h2>Requirements at a glance</h2>
+<table>
+<thead><tr><th>Resource</th><th>What the tool documentation says</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>RAM, aligner index build</td><td>BWA-MEM2 needs 28N&nbsp;GB, where N is the reference size in gigabases &mdash; about 84&nbsp;GB for the human genome</td><td>BWA-MEM2 documentation</td></tr>
+<tr><td>CPU threads</td><td>BWA-MEM2 is multi-threaded (<code>-t</code> flag); its benchmarks used a 56-core system</td><td>BWA-MEM2 documentation</td></tr>
+<tr><td>GPU memory</td><td>At least 16&nbsp;GB per GPU; 18&nbsp;GB or more for the default HaplotypeCaller configuration</td><td>NVIDIA Parabricks requirements</td></tr>
+<tr><td>System RAM with GPUs</td><td>2 GPUs: 100&nbsp;GB RAM and 24 threads; 4 GPUs: 196&nbsp;GB and 32 threads; 8 GPUs: 392&nbsp;GB and 48 threads</td><td>NVIDIA Parabricks requirements</td></tr>
+<tr><td>Storage per 30x human genome</td><td>FASTQ ~100&ndash;200&nbsp;GB, BAM ~80&ndash;100&nbsp;GB, CRAM ~30&ndash;60&nbsp;GB, VCF ~1&nbsp;GB</td><td>Lab Manager planning ranges</td></tr>
+</tbody>
+</table>
+<p>Sources: <a href="https://github.com/bwa-mem2/bwa-mem2" target="_blank" rel="noopener">BWA-MEM2</a>, <a href="https://docs.nvidia.com/clara/parabricks/latest/gettingstarted/installationrequirements.html" target="_blank" rel="noopener">NVIDIA Parabricks installation requirements</a>, <a href="https://www.labmanager.com/how-big-is-ngs-data-sizing-storage-for-your-sequencing-volume-35842" target="_blank" rel="noopener">Lab Manager</a>. Requirements change between versions, so check the current documentation for the tools you run.</p>
+
+<h2>CPU: parallel work rewards cores</h2>
+<p>Alignment tools use many threads, and variant calling is commonly run as scatter-gather: the work is split into independent pieces (genomic intervals or samples), run in parallel and merged. That favours a many-core server CPU with enough memory per job over a few very fast cores. For a throughput target of many genomes per week, a dual-socket platform is the usual direction; see <a href="cpu-choice-ai-render-workstation-guide.html">choosing a CPU for AI and render workstations</a> for how core count and clocks trade off.</p>
+
+<h2>RAM and ECC</h2>
+<p>Size RAM for the largest single step (the 84&nbsp;GB index build is one example) and for how many jobs you want running at once. Pipelines run for many hours, which is the case ECC memory is designed for; read <a href="ecc-ram-explained.html">ECC RAM explained</a>.</p>
+
+<h2>Storage: plan three tiers</h2>
+<ul>
+<li><b>Fast scratch (NVMe)</b> for alignment, sorting and calling, where intermediate files are large. See <a href="ssd-vs-hdd-workstation-guide.html">SSD vs HDD for workstations</a>.</li>
+<li><b>Bulk working storage (HDD array)</b> with redundancy; read <a href="raid-for-workstations-guide.html">RAID for workstations</a> and remember RAID is not a backup.</li>
+<li><b>Archive and backup</b> on a separate machine; see the <a href="custom-nas-storage-server-guide.html">custom NAS and storage server guide</a>. Converting finished BAMs to CRAM keeps this tier affordable.</li>
+</ul>
+
+<h2>Do you need a GPU?</h2>
+<p>Not for common CPU-based tools. A GPU helps only if you run GPU-accelerated pipelines such as NVIDIA Parabricks, whose requirements are in the table above. If you also do machine learning on the same machine, see <a href="gpu-workstation-vs-server.html">GPU workstation vs server</a> and <a href="psu-sizing-multi-gpu-workstation-guide.html">PSU sizing for multi-GPU builds</a>.</p>
+
+<h2>Putting it together</h2>
+<p>A genomics server is built from the pipeline outward: many cores, ECC RAM above your largest step, three storage tiers, and a GPU only if your tools use one. ProStation Systems builds brand-new custom servers to that specification. Read the full <a href="https://prostationsystems.com/blog/genomics-bioinformatics-compute-server-guide-india" target="_blank">genomics and bioinformatics server guide</a>, see our <a href="https://prostationsystems.com/industries/education" target="_blank">education and research servers</a>, compare <a href="build-tiers-compared.html">Starter, Pro and Ultra tiers</a>, then use the <a href="https://prostationsystems.com/customize" target="_blank">configurator</a> or book <a href="https://prostationsystems.com/consulting" target="_blank">free consulting</a> with your tools and monthly sample count. Storage-heavy labs can also review <a href="https://prostationsystems.com/use-cases/storage-backup" target="_blank">storage and backup servers</a>.</p>
+
+<h2>FAQ</h2>
+<ul>
+  <li><strong>How much RAM does a genomics server need?</strong> &mdash; At least the largest step: BWA-MEM2 index building needs about 84&nbsp;GB for the human genome, and Parabricks lists 100&nbsp;GB for a 2-GPU system. Add working memory for parallel jobs.</li>
+  <li><strong>How much storage per genome?</strong> &mdash; For a 30x human genome, roughly 100&ndash;200&nbsp;GB as FASTQ, 80&ndash;100&nbsp;GB as BAM and 30&ndash;60&nbsp;GB as CRAM; sizes vary with pipeline.</li>
+  <li><strong>Is a GPU required?</strong> &mdash; No; only for GPU-accelerated tools such as Parabricks, which needs at least 16&nbsp;GB of GPU memory.</li>
+  <li><strong>Can ProStation build one?</strong> &mdash; Yes, as a custom build sized to your pipeline and budget.</li>
+</ul>
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87968-22044</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+</body>
+</html>
