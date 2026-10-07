@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Agency Server Checklist: CRM and Portal</title>
+  <meta name="description" content="What a real estate agency server needs: CRM requirements, media storage, backups, UPS, plus RERA and DPDP basics. A short checklist from ProStation.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/real-estate-agency-server-sizing-checklist.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; } th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Server for a Real Estate Agency: CRM, Portal and Media Checklist</h1>
+<p>A real estate agency's server runs a CRM, a listing site and a large archive of photos, brochures and agreements. That is light on processor power and heavy on storage, backups and uptime. This is a short checklist; the full guide is ProStation's <a href="https://prostationsystems.com/blog/real-estate-agency-crm-property-portal-server-guide-india" target="_blank">server guide for real estate agencies</a>.</p>
+
+<h2>What the software asks for</h2>
+<p>CRM vendors publish software requirements rather than hardware minimums. EspoCRM's documentation, for example, lists PHP 8.3 to 8.5, MySQL 8.0+, MariaDB 10.3+ or PostgreSQL 15, a PHP <code>memory_limit</code> of 256M and a cron setup for background jobs. Size by users, records and attachments, and check the requirements of the exact release you will run.</p>
+
+<h2>The checklist</h2>
+<table>
+<thead><tr><th>Item</th><th>What to decide</th></tr></thead>
+<tbody>
+<tr><td>Database storage</td><td>NVMe SSD for the CRM database and operating system</td></tr>
+<tr><td>Media storage</td><td>Large drives in a redundant array for photos, brochures and documents. As an illustration, 2,000 listings with 20 photos of 3 MB each is about 120 GB before videos and documents. See <a href="custom-nas-storage-server-guide.html">custom NAS and storage servers</a> and <a href="raid-for-workstations-guide.html">RAID explained</a></td></tr>
+<tr><td>Memory</td><td>ECC memory to protect a database that runs for months; see <a href="ecc-ram-explained.html">ECC RAM explained</a></td></tr>
+<tr><td>Separate services</td><td>CRM, website and file share as separate virtual machines on one host; see <a href="prostation-virtualization-server.html">virtualization servers</a></td></tr>
+<tr><td>Power</td><td>A UPS sized to the load; see ProStation's <a href="https://prostationsystems.com/blog/power-backup-ups-sizing-server-workstation-guide-india" target="_blank">UPS sizing guide</a> and the <a href="https://prostationsystems.com/blog/redundant-power-supply-dual-psu-server-guide" target="_blank">dual-PSU guide</a></td></tr>
+<tr><td>Backups</td><td>The 3-2-1 rule: three copies, two kinds of storage, one off-site. RAID is not a backup. Test a restore</td></tr>
+</tbody>
+</table>
+
+<h2>Indian rules that touch the data</h2>
+<p>General information, not legal advice. Registered real estate agents must keep books of account and records under RERA Sections 9 and 10 and the state rules. A CRM also holds personal data, and under India's DPDP Act the Rules were notified on 13 November 2025, with core obligations such as security safeguards and breach notification taking effect on 13 May 2027, according to Hogan Lovells' summary. The Rules refer to safeguards such as encryption, access controls, monitoring and backups, and to keeping logs for at least one year. Owning the server is a way to control the data, not a legal requirement; take advice for your organisation. See also <a href="https://prostationsystems.com/blog/law-firm-secure-document-server-guide-india" target="_blank">secure document server design</a>.</p>
+
+<h2>Sizing</h2>
+<p>ProStation has not published CRM or portal benchmarks, so treat this as planning guidance. A small brokerage with a handful of users can start on the Starter tier (Intel Xeon E, 16&ndash;64GB ECC DDR4, 1TB NVMe) with extra drives for media and a backup disk. A multi-branch firm running several virtual machines can start on the Pro tier (Intel Xeon Scalable, 64&ndash;256GB ECC DDR4). The Ultra tier is built for AI and heavy compute and is not needed for this workload. See the <a href="https://prostationsystems.com/servers" target="_blank">server tiers</a> and the <a href="https://prostationsystems.com/use-cases/small-business" target="_blank">small business</a> and <a href="https://prostationsystems.com/use-cases/storage-backup" target="_blank">storage and backup</a> use cases.</p>
+<p>For a tested refurbished NAS as a low-cost backup target, sister brand <a href="https://serverwale.com/refurbished-servers-india" target="_blank">Serverwale</a> lists refurbished servers and storage.</p>
+
+<h2>Next step</h2>
+<p>Share your user count, CRM and media volume through the <a href="https://prostationsystems.com/customize" target="_blank">configurator</a> or book <a href="https://prostationsystems.com/consulting" target="_blank">free consulting</a>. Every ProStation build carries a 1-year warranty, with extended warranty available (<a href="https://prostationsystems.com/warranty" target="_blank">warranty</a>).</p>
+
+<h2>FAQ</h2>
+<ul>
+  <li><strong>What server does a real estate CRM need?</strong> &mdash; It depends on users, records and attachments. EspoCRM lists PHP 8.3 to 8.5 and MySQL, MariaDB or PostgreSQL. A small agency typically needs ECC memory, NVMe for the database, extra disks for media and a tested backup.</li>
+  <li><strong>Should an agency host its CRM on its own server or in the cloud?</strong> &mdash; Either can work. A subscription CRM suits small teams without IT staff; an owned server suits many users, large media archives or a self-hosted CRM. Many agencies host the public listing site in the cloud and keep the CRM and documents on their own server.</li>
+  <li><strong>Does DPDP law require data to stay on my own server?</strong> &mdash; Not as a general rule. The DPDP Act requires reasonable security safeguards and breach reporting wherever data is hosted; the Rules' core obligations take effect on 13 May 2027. Take legal advice.</li>
+  <li><strong>Is RAID enough to protect property records?</strong> &mdash; No. RAID keeps a server running through a disk failure but does not protect against deletion, ransomware or fire. Add a tested backup with an off-site copy.</li>
+</ul>
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87962-44410</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What server does a real estate CRM need?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on users, records and attachments. EspoCRM lists PHP 8.3 to 8.5 and MySQL, MariaDB or PostgreSQL. A small agency typically needs ECC memory, NVMe for the database, extra disks for media and a tested backup."}}, {"@type": "Question", "name": "Should an agency host its CRM on its own server or in the cloud?", "acceptedAnswer": {"@type": "Answer", "text": "Either can work. A subscription CRM suits small teams without IT staff; an owned server suits many users, large media archives or a self-hosted CRM. Many agencies host the public listing site in the cloud and keep the CRM and documents on their own server."}}, {"@type": "Question", "name": "Does DPDP law require data to stay on my own server?", "acceptedAnswer": {"@type": "Answer", "text": "Not as a general rule. The DPDP Act requires reasonable security safeguards and breach reporting wherever data is hosted; the Rules' core obligations take effect on 13 May 2027. Take legal advice."}}, {"@type": "Question", "name": "Is RAID enough to protect property records?", "acceptedAnswer": {"@type": "Answer", "text": "No. RAID keeps a server running through a disk failure but does not protect against deletion, ransomware or fire. Add a tested backup with an off-site copy."}}]}</script>
+</body>
+</html>

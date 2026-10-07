@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Monitor Trading Desk Workstation Checklist</title>
+  <meta name="description" content="Count GPU outputs, check DisplayPort and HDMI bandwidth, and add ECC memory, a good PSU and a UPS for an always-on trading desk or control room.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/multi-monitor-trading-desk-workstation-checklist.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; } th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Multi-Monitor Workstation Checklist for Trading Desks and Control Rooms</h1>
+<p>How many screens a computer can run is decided by its graphics outputs and display bandwidth, not by processor speed. For a trading desk or control room the machine must also stay up all day. This is a short checklist; the full reasoning is in ProStation's guide to a <a href="https://prostationsystems.com/blog/multi-monitor-workstation-trading-desk-control-room-india" target="_blank">multi-monitor workstation for trading desks and control rooms</a>.</p>
+
+<h2>Count outputs first</h2>
+<table>
+<thead><tr><th>Graphics card</th><th>Display outputs (vendor documentation)</th></tr></thead>
+<tbody>
+<tr><td>NVIDIA GeForce RTX 4090</td><td>3 &times; DisplayPort 1.4a + 1 &times; HDMI 2.1, up to 4 displays</td></tr>
+<tr><td>NVIDIA RTX A4000</td><td>4 &times; DisplayPort 1.4a</td></tr>
+<tr><td>NVIDIA RTX A2000 12GB</td><td>4 &times; mini DisplayPort 1.4a (Lenovo lists it as withdrawn from April 2025, so treat it as an example only)</td></tr>
+</tbody>
+</table>
+<p>Physical screens must not exceed the outputs on the cards you install. For five or more screens, plan a second card instead of stretching one with adapters.</p>
+
+<h2>Check cable bandwidth</h2>
+<ul>
+<li><strong>DisplayPort 1.4:</strong> 32.4 Gbps total, about 25.92 Gbps usable &mdash; comfortable for one 4K 60 Hz screen per port.</li>
+<li><strong>HDMI 2.0:</strong> 18 Gbps total; a 4K 60 Hz signal uses roughly 14.4 Gbps.</li>
+<li><strong>DisplayPort daisy-chaining (MST):</strong> the chain shares one link, so it suits lower-resolution screens. For critical desks, use one cable per monitor so no screen depends on another.</li>
+</ul>
+
+<h2>Video walls</h2>
+<p>NVIDIA Mosaic spans one desktop across up to 16 panels from a single system and is listed for NVIDIA's professional graphics products. Most trading desks do not need it; NOC, SOC and plant control rooms might. Confirm the exact card against NVIDIA's supported-product information.</p>
+
+<h2>Reliability checklist for an always-on desk</h2>
+<table>
+<thead><tr><th>Item</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr><td>ECC memory</td><td>Corrects single-bit memory errors on a machine that runs for weeks; see <a href="ecc-ram-explained.html">ECC RAM explained</a></td></tr>
+<tr><td>Quality power supply and UPS</td><td>A brown-out ends the session instantly; see <a href="psu-sizing-multi-gpu-workstation-guide.html">PSU sizing</a> and ProStation's <a href="https://prostationsystems.com/blog/power-backup-ups-sizing-server-workstation-guide-india" target="_blank">UPS sizing guide</a></td></tr>
+<tr><td>Cooling</td><td>A hot machine slows itself down when you need it; see <a href="custom-build-cooling-noise-guide.html">cooling and noise</a> and <a href="https://prostationsystems.com/blog/why-workstations-thermal-throttle-cooling-guide" target="_blank">why workstations throttle</a></td></tr>
+<tr><td>Remote management</td><td>Lets IT restart or inspect a desk machine without walking over; see <a href="ipmi-remote-management-explained.html">IPMI explained</a></td></tr>
+<tr><td>Downtime cost</td><td>Puts a number on an hour of lost trading or monitoring; see <a href="server-downtime-cost-formula-guide.html">the downtime cost formula</a></td></tr>
+</tbody>
+</table>
+<p>Every ProStation build uses ECC DDR4 memory, is stress-tested for 48 hours and carries a 1-year warranty with extended warranty available (see the <a href="https://prostationsystems.com/warranty" target="_blank">warranty page</a>). ProStation has not published multi-monitor benchmarks, so size by the output and bandwidth logic above.</p>
+
+<h2>Next step</h2>
+<p>Share your screen count, resolution and applications through the <a href="https://prostationsystems.com/customize" target="_blank">configurator</a> or book <a href="https://prostationsystems.com/consulting" target="_blank">free consulting</a>. Relevant sectors: <a href="https://prostationsystems.com/industries/fintech" target="_blank">fintech</a> and <a href="https://prostationsystems.com/industries/cybersecurity" target="_blank">cybersecurity</a>. See the <a href="https://prostationsystems.com/servers" target="_blank">Starter, Pro and Ultra tiers</a>.</p>
+
+<h2>FAQ</h2>
+<ul>
+  <li><strong>How many monitors can one graphics card run?</strong> &mdash; It depends on the card. The RTX A4000 lists four DisplayPort outputs and the GeForce RTX 4090 lists three DisplayPort and one HDMI with up to four displays. For more than four screens you normally add a second card.</li>
+  <li><strong>Is DisplayPort better than HDMI for multiple monitors?</strong> &mdash; DisplayPort 1.4 carries about 25.92 Gbps of data versus 18 Gbps total for HDMI 2.0, so it has more headroom. Use whichever input your monitors support, with one direct cable per screen.</li>
+  <li><strong>Can I daisy-chain monitors on a trading desk?</strong> &mdash; Yes, if each monitor supports DisplayPort 1.2 or newer, but the chain shares one link. For critical desks, use one cable per monitor.</li>
+  <li><strong>Can ProStation build a multi-monitor workstation?</strong> &mdash; Yes, as a custom build specified from your screen count and 24/7 use, with a 1-year warranty and extended warranty available.</li>
+</ul>
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87962-44410</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many monitors can one graphics card run?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the card. The RTX A4000 lists four DisplayPort outputs and the GeForce RTX 4090 lists three DisplayPort and one HDMI with up to four displays. For more than four screens you normally add a second card."}}, {"@type": "Question", "name": "Is DisplayPort better than HDMI for multiple monitors?", "acceptedAnswer": {"@type": "Answer", "text": "DisplayPort 1.4 carries about 25.92 Gbps of data versus 18 Gbps total for HDMI 2.0, so it has more headroom. Use whichever input your monitors support, with one direct cable per screen."}}, {"@type": "Question", "name": "Can I daisy-chain monitors on a trading desk?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, if each monitor supports DisplayPort 1.2 or newer, but the chain shares one link. For critical desks, use one cable per monitor."}}, {"@type": "Question", "name": "Can ProStation build a multi-monitor workstation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, as a custom build specified from your screen count and 24/7 use, with a 1-year warranty and extended warranty available."}}]}</script>
+</body>
+</html>
