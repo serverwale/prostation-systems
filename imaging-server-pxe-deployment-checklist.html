@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imaging Server and PXE Deployment Checklist for Labs and Offices</title>
+  <meta name="description" content="A short checklist for network OS deployment: PXE, unicast vs multicast, Clonezilla and FOG, retired Microsoft tools and sizing. From ProStation Systems.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/imaging-server-pxe-deployment-checklist.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; } th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Imaging Server and PXE Deployment: A Checklist for Labs, Cafes and Offices</h1>
+<p>An imaging server stores "golden" operating-system images and pushes them to many PCs that boot over the network (PXE). It saves the most time in labs, schools and cafes that re-image often. This is a short checklist; the full guide is ProStation's <a href="https://prostationsystems.com/blog/server-imaging-os-deployment-pxe-guide-india" target="_blank">imaging server and PXE deployment guide</a>. Figures below come from the tools' own documentation; ProStation publishes no imaging benchmarks.</p>
+
+<h2>Do you need one?</h2>
+<p>It usually pays off from roughly a dozen identical machines upward, or whenever you re-image on a schedule, as in labs, exam centres, cafes and schools. For fewer than about ten PCs that rarely change, a reference USB drive is simpler. See the <a href="https://prostationsystems.com/blog/esports-gaming-cafe-bulk-workstations-guide" target="_blank">gaming cafe bulk workstation guide</a> and the <a href="https://prostationsystems.com/industries/education" target="_blank">education industry page</a> for the hardware side of those fleets.</p>
+
+<h2>The checklist</h2>
+<table>
+<thead><tr><th>Item</th><th>What to check</th></tr></thead>
+<tbody>
+<tr><td>PXE boot</td><td>Enabled in each client's BIOS/UEFI, with network in the boot order, and the PCs on the same segment as the server.</td></tr>
+<tr><td>Isolated network</td><td>Clonezilla's documentation recommends fixed client addresses and an isolated network so images are not sent to unknown machines.</td></tr>
+<tr><td>Generalise Windows images</td><td>Microsoft states Windows images must be generalised with Sysprep before deployment to new PCs.</td></tr>
+<tr><td>Unicast or multicast</td><td>Unicast gives each client its own copy; multicast sends once to a group. FOG notes multicast waits for an expected client count and generally does not cross routers without extra setup.</td></tr>
+<tr><td>Tool choice</td><td>Clonezilla and FOG Project are free. Microsoft says MDT is retired and WDS is deprecated, so do not build a new setup around them.</td></tr>
+<tr><td>Image backup</td><td>RAID is not a backup of your golden images. Keep a copy elsewhere and keep the previous version.</td></tr>
+</tbody></table>
+
+<h2>Size the server from bottlenecks</h2>
+<p>Illustrative arithmetic, not a measurement: a 40 GB image over a 1 Gb/s link (about 125 MB/s at best) takes roughly 5.3 minutes for one client. For 20 clients by unicast on one 1 Gb/s server link, 800 GB leaves the server, about 107 minutes. On a 10 Gb/s server link that falls to about 11 minutes, and multicast sends the image once. Real results are slower because of disk speed, compression and switch limits.</p>
+<ol>
+<li><strong>Network link first.</strong> See the <a href="https://prostationsystems.com/blog/server-networking-1gbe-10gbe-25gbe-guide" target="_blank">1GbE, 10GbE and 25GbE guide</a>.</li>
+<li><strong>Storage reads.</strong> NVMe handles many parallel reads better than spinning disks. See the <a href="https://prostationsystems.com/blog/server-storage-nvme-sas-sata-guide" target="_blank">NVMe, SAS and SATA guide</a>.</li>
+<li><strong>RAM and CPU.</strong> Spare RAM helps caching and ECC adds reliability (<a href="https://prostationsystems.com/blog/ecc-vs-non-ecc-ram-servers" target="_blank">ECC vs non-ECC</a>). CPU is rarely the first limit.</li>
+<li><strong>The client end.</strong> A PC with a slow disk or a 1 Gb/s port finishes later than the server could allow.</li>
+</ol>
+
+<h2>Where ProStation fits</h2>
+<p>ProStation builds new, custom Intel Xeon tower servers with ECC DDR4 in <a href="https://prostationsystems.com/servers" target="_blank">Starter, Pro and Ultra tiers</a>. A Starter build with a 10GbE option can serve a single lab; Pro suits a larger fleet or a server that also hosts VMs or files. Describe your client count and image sizes in the <a href="https://prostationsystems.com/customize" target="_blank">server customizer</a> or book a <a href="https://prostationsystems.com/consulting" target="_blank">free consulting call</a>, and test with your own images. For form factor see <a href="https://prostationsystems.com/blog/tower-server-vs-rack-server-india" target="_blank">tower vs rack servers</a>; for storage of images see the <a href="https://prostationsystems.com/blog/nas-storage-server-setup-guide-india" target="_blank">NAS storage server guide</a>. Hardware cover is on the <a href="https://prostationsystems.com/warranty" target="_blank">warranty page</a>.</p>
+
+<h2>Frequently asked questions</h2>
+<ul><li><strong>What is PXE boot?</strong> &mdash; PXE lets a computer start from the network instead of its own disk. The client asks for an address, downloads a small boot environment from a server and runs it, which is how an empty PC can be imaged.</li><li><strong>Unicast or multicast for a computer lab?</strong> &mdash; Multicast suits a room of identical PCs imaged together, because the image is sent once. Unicast suits a few PCs arriving at different times. Multicast needs capable switches and usually one subnet.</li><li><strong>Should I use WDS or MDT?</strong> &mdash; Microsoft states MDT is retired and WDS is deprecated, so a new setup should look at Clonezilla or FOG, or Configuration Manager or Autopilot if you already use Microsoft's management tools.</li><li><strong>What server do I need for imaging?</strong> &mdash; Reason from the network link, storage read speed, RAM and CPU, in that order, and test with your own images. ProStation publishes no imaging benchmarks.</li><li><strong>Do I need an imaging server for 5 PCs?</strong> &mdash; Probably not. Under about ten PCs that rarely change, a single reference USB drive is simpler.</li></ul>
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87962-44410</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is PXE boot?", "acceptedAnswer": {"@type": "Answer", "text": "PXE lets a computer start from the network instead of its own disk. The client asks for an address, downloads a small boot environment from a server and runs it, which is how an empty PC can be imaged."}}, {"@type": "Question", "name": "Unicast or multicast for a computer lab?", "acceptedAnswer": {"@type": "Answer", "text": "Multicast suits a room of identical PCs imaged together, because the image is sent once. Unicast suits a few PCs arriving at different times. Multicast needs capable switches and usually one subnet."}}, {"@type": "Question", "name": "Should I use WDS or MDT?", "acceptedAnswer": {"@type": "Answer", "text": "Microsoft states MDT is retired and WDS is deprecated, so a new setup should look at Clonezilla or FOG, or Configuration Manager or Autopilot if you already use Microsoft's management tools."}}, {"@type": "Question", "name": "What server do I need for imaging?", "acceptedAnswer": {"@type": "Answer", "text": "Reason from the network link, storage read speed, RAM and CPU, in that order, and test with your own images. ProStation publishes no imaging benchmarks."}}, {"@type": "Question", "name": "Do I need an imaging server for 5 PCs?", "acceptedAnswer": {"@type": "Answer", "text": "Probably not. Under about ten PCs that rarely change, a single reference USB drive is simpler."}}]}</script>
+</body>
+</html>
