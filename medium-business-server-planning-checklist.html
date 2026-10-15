@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medium-Business Server Planning Checklist (100 to 500 Staff)</title>
+  <meta name="description" content="Plan a server setup for a medium-sized business: workloads, one server vs standby vs cluster, sizing order, 3-2-1 backup and licensing. From ProStation Systems.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/medium-business-server-planning-checklist.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; } th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Medium-Sized Business Server Planning Checklist: Workloads, Redundancy and Backup</h1>
+
+<p>A server setup for a company of a few hundred people is a plan, not one bigger machine: list the workloads, decide how many machines should share them, add redundancy where a failure would stop work, then size CPU, ECC memory, storage and network from your own measurements. This is a short checklist; the full guide is ProStation&rsquo;s <a href="https://prostationsystems.com/blog/medium-business-server-setup-guide-india" target="_blank">server setup guide for a medium-sized business in India</a>. The 100 to 500 employee range is planning shorthand, not a legal definition, and nothing here is a ProStation benchmark.</p>
+
+<h2>Step 1: list the workloads</h2>
+<table>
+<thead><tr><th>Workload</th><th>What it stresses</th></tr></thead>
+<tbody>
+<tr><td>Directory, DHCP, DNS</td><td>Little, but everything depends on it, so protect it first</td></tr>
+<tr><td>File shares and archives</td><td>Storage capacity and network</td></tr>
+<tr><td>ERP, accounting, database</td><td>Storage latency, RAM, single-thread CPU; check the vendor&rsquo;s own requirements</td></tr>
+<tr><td>Virtual machines</td><td>RAM and CPU cores; add every VM, then leave headroom</td></tr>
+<tr><td>Remote desktop sessions</td><td>RAM per session; Remote Desktop licences if Windows hosts them</td></tr>
+<tr><td>Backup target</td><td>Capacity, sequential write speed; keep it on a separate machine</td></tr>
+</tbody>
+</table>
+
+<h2>Step 2: one server, a standby or a cluster</h2>
+<table>
+<thead><tr><th>Design</th><th>Protects against</th><th>Still exposed to</th></tr></thead>
+<tbody>
+<tr><td>One server with RAID, dual PSU, ECC and a separate backup</td><td>Disk, power-supply and memory faults</td><td>Board or CPU failure</td></tr>
+<tr><td>Primary plus a standby you restore or replicate to</td><td>Single-server failure, with some manual work</td><td>Failover time and replication gaps</td></tr>
+<tr><td>Three or more hosts with shared storage</td><td>Host failure with automatic restart</td><td>Shared storage and network, unless duplicated</td></tr>
+</tbody>
+</table>
+<p>High availability is a system, not a switch. Proxmox VE&rsquo;s documentation lists at least three cluster nodes and shared storage among its requirements, and Broadcom describes vSphere HA as hosts working together so virtual machines can restart on other hosts. Move beyond one server when an hour of downtime costs more than the second machine: see <a href="https://prostationsystems.com/blog/cost-of-server-downtime-warranty-guide" target="_blank">how to calculate the real cost of downtime</a>, and the <a href="https://prostationsystems.com/blog/redundant-power-supply-dual-psu-server-guide" target="_blank">dual PSU guide</a>.</p>
+
+<h2>Step 3: size in this order</h2>
+<ul>
+<li><strong>RAM first</strong> for virtualization: every VM plus hypervisor overhead plus spare capacity. ECC DDR4 is standard in all ProStation tiers.</li>
+<li><strong>Cores from the workloads</strong>, remembering that Windows Server licensing counts physical cores.</li>
+<li><strong>Storage by type:</strong> NVMe for databases and VM disks, larger disks for archives.</li>
+<li><strong>Network:</strong> a 1 Gb/s link carries about 125 MB/s at best and 10 Gb/s about 1,250 MB/s, shared by everyone on it. See the <a href="https://prostationsystems.com/blog/server-networking-1gbe-10gbe-25gbe-guide" target="_blank">1GbE, 10GbE and 25GbE guide</a>.</li>
+</ul>
+<p>ProStation&rsquo;s listed tiers (Starter: Intel Xeon E, 16&ndash;64 GB ECC DDR4; Pro: Intel Xeon Scalable, 64&ndash;256 GB ECC DDR4; Ultra: dual Intel Xeon Scalable, 256&ndash;512 GB ECC DDR4) are starting points on the <a href="https://prostationsystems.com/servers" target="_blank">servers page</a>, and each can be changed in the <a href="https://prostationsystems.com/customize" target="_blank">customizer</a>. For a typical virtualization host, see the <a href="https://prostationsystems.com/use-cases/virtualization" target="_blank">virtualization use case</a>.</p>
+
+<h2>Step 4: backup</h2>
+<p>CISA&rsquo;s data backup guidance recommends the 3-2-1 rule: three copies of important data, on two different media types, with one copy offsite. Add one copy that ransomware on your network cannot reach, and test restores on a schedule. RAID is not a backup. Illustrative arithmetic, not a measurement: a 2 TB full backup over 1 Gb/s at the theoretical 125 MB/s takes about 4.4 hours, and about 27 minutes over 10 Gb/s.</p>
+
+<h2>Step 5: licensing, power and support</h2>
+<ul>
+<li><strong>Windows Server</strong> is licensed per physical core, with a minimum of 8 core licences per processor and 16 per server, and most deployments also need a CAL per user or device. Standard covers two VMs per fully licensed host. Linux with Proxmox carries no per-core fee. See the <a href="https://prostationsystems.com/blog/windows-server-licensing-cores-cals-custom-server-india" target="_blank">Windows Server licensing guide</a>.</li>
+<li><strong>Power and cooling:</strong> size the UPS to the real load; see <a href="https://prostationsystems.com/blog/power-backup-ups-sizing-server-workstation-guide-india" target="_blank">UPS sizing for servers and workstations</a>.</li>
+<li><strong>Data protection:</strong> India&rsquo;s DPDP Act requires reasonable security safeguards against personal data breaches, so backup, access control and patching are part of the job.</li>
+<li><strong>Support:</strong> ProStation hardware carries a 1-year warranty with extended warranty available at additional cost, 24/7 support and on-site engineers in six cities. Details on the <a href="https://prostationsystems.com/warranty" target="_blank">warranty page</a>.</li>
+</ul>
+
+<h2>Questions to settle before you order</h2>
+<ul>
+<li>Which workloads and how many users? What does an hour of downtime cost?</li>
+<li>Which systems need Windows Server, and are CALs in the quote?</li>
+<li>Where are the second and third backup copies?</li>
+<li>Is the network 10GbE end to end, and what power and cooling exist?</li>
+<li>Who replaces a failed part, and how fast, in writing?</li>
+</ul>
+<p>More reading: <a href="https://prostationsystems.com/industries/enterprises-smb" target="_blank">enterprises and SMB</a>, <a href="https://prostationsystems.com/use-cases/small-business" target="_blank">small business servers</a>, <a href="https://prostationsystems.com/blog/tower-server-vs-rack-server-india" target="_blank">tower vs rack servers</a>, <a href="https://prostationsystems.com/blog/on-premise-vs-colocation-vs-cloud-server-guide" target="_blank">on-premise vs colocation vs cloud</a>, <a href="https://prostationsystems.com/blog/how-to-choose-server-for-business-india" target="_blank">how to choose a server for your business</a> and the <a href="https://prostationsystems.com/consulting" target="_blank">free consulting call</a>. On this hub: <a href="./server-downtime-cost-formula-guide.html">downtime cost formula</a> and <a href="./windows-server-licensing-checklist-custom-server.html">Windows Server licensing checklist</a>.</p>
+<p><small>Sources: Proxmox VE documentation, High Availability; Broadcom vSphere Availability documentation; CISA, Data Backup Options; Microsoft Windows Server licensing documentation as summarised in the ProStation guide; Digital Personal Data Protection Act, 2023; ProStation Systems servers and warranty pages. General information, not licensing or legal advice. Last verified 15 October 2026.</small></p>
+
+<h2>Frequently asked questions</h2>
+<ul>
+<li><strong>What server does a medium-sized business need?</strong> It depends on workloads, user count and the cost of downtime. For many companies of a few hundred staff, one virtualization host with Intel Xeon Scalable processors, ECC DDR4 memory, NVMe storage and 10GbE, plus a separate tested backup target, is a sensible starting point.</li><li><strong>Do I need a cluster for 200 to 500 employees?</strong> Not necessarily. A cluster needs several hosts, shared storage and skilled administration. If a few hours of downtime is tolerable, one well-built server with internal redundancy and a tested backup may be enough.</li><li><strong>How many CALs does a 300-person company need?</strong> Windows Server needs a CAL for each user or device that accesses it, so 300 staff accounts means 300 user CALs, plus Remote Desktop Services CALs if they use remote sessions. Confirm the count with an authorised Microsoft reseller.</li><li><strong>Is RAID enough to protect company data?</strong> No. RAID keeps a server running through a failed drive. It does not protect against deletion, ransomware or a site loss, so follow the 3-2-1 backup rule.</li>
+</ul>
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87962-44410</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What server does a medium-sized business need?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on workloads, user count and the cost of downtime. For many companies of a few hundred staff, one virtualization host with Intel Xeon Scalable processors, ECC DDR4 memory, NVMe storage and 10GbE, plus a separate tested backup target, is a sensible starting point."}}, {"@type": "Question", "name": "Do I need a cluster for 200 to 500 employees?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily. A cluster needs several hosts, shared storage and skilled administration. If a few hours of downtime is tolerable, one well-built server with internal redundancy and a tested backup may be enough."}}, {"@type": "Question", "name": "How many CALs does a 300-person company need?", "acceptedAnswer": {"@type": "Answer", "text": "Windows Server needs a CAL for each user or device that accesses it, so 300 staff accounts means 300 user CALs, plus Remote Desktop Services CALs if they use remote sessions. Confirm the count with an authorised Microsoft reseller."}}, {"@type": "Question", "name": "Is RAID enough to protect company data?", "acceptedAnswer": {"@type": "Answer", "text": "No. RAID keeps a server running through a failed drive. It does not protect against deletion, ransomware or a site loss, so follow the 3-2-1 backup rule."}}]}</script>
+</body>
+</html>
