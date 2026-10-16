@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPS Sizing Checklist for a Server or Workstation (India)</title>
+  <meta name="description" content="Size a UPS for a server or workstation: real watts, VA vs watts, headroom, runtime, line-interactive vs online, and planning ranges by tier. From ProStation Systems.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/ups-power-backup-sizing-checklist-server-workstation.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; } th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>UPS Sizing for a Server or Workstation: A Five-Step Checklist</h1>
+<p>A server or workstation has no built-in battery, so a power cut or a bad voltage dip can corrupt a database, interrupt a RAID rebuild or ruin a long training run. Sizing the UPS is a short calculation, not guesswork. This is a quick checklist; the full guide is ProStation's <a href="https://prostationsystems.com/blog/power-backup-ups-sizing-server-workstation-guide-india" target="_blank">power backup and UPS sizing guide for servers and workstations</a>. The kVA ranges below are general planning starting points, not a quote, so measure your own configuration before you buy.</p>
+<h2>The five steps</h2>
+<table>
+<thead><tr><th>Step</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><td>1. Find the real draw</td><td>Use the sustained watts the machine pulls under your workload, measured with a plug-in power meter, not the power supply's rating. An 850 W supply does not draw 850 W all day. Ask the builder for the measured draw of your exact configuration.</td></tr>
+<tr><td>2. Convert watts to VA</td><td>VA = watts &divide; power factor. Server supplies with active power factor correction sit near 0.9 to 0.95, but many budget UPS units are rated on a 0.6 to 0.7 assumption, so a "1000 VA" unit may deliver only about 600 to 700 W. Always read the watt rating.</td></tr>
+<tr><td>3. Add headroom</td><td>Add roughly 25 to 30 percent for the switch-on current spike and for future upgrades such as another drive, more RAM or a second GPU.</td></tr>
+<tr><td>4. Choose the runtime</td><td>For most single servers 10 to 15 minutes is enough to trigger a clean, automatic shutdown, which is what actually protects the data. Plan longer only if the workload cannot stop, and then expect a bigger battery bank or a generator.</td></tr>
+<tr><td>5. Choose the type</td><td>Line-interactive units suit a basic file or application server. An online double-conversion UPS gives clean power with zero transfer time and is the safer choice for a hypervisor, a database or a long unattended job.</td></tr>
+</tbody>
+</table>
+<h2>Worked example (illustrative arithmetic)</h2>
+<p>Suppose a meter shows a sustained 400 W under load. With 30 percent headroom you need about 520 W of real output. A UPS sold as 1000 VA but rated at 0.6 power factor delivers only 600 W, which leaves almost no margin, while the same machine on a 1000 VA unit rated at 0.9 power factor has 900 W available. The VA number alone told you nothing; the watt rating did. This is a method illustration, not a recommendation for any specific model.</p>
+<h2>Planning ranges by build tier</h2>
+<table>
+<thead><tr><th>Tier</th><th>Typical workload</th><th>Starting UPS range</th></tr></thead>
+<tbody>
+<tr><td>Starter</td><td>File, application or web serving on an entry Intel Xeon build</td><td>1 to 1.5 kVA, line-interactive or online, for a 10 to 15 minute shutdown window</td></tr>
+<tr><td>Pro</td><td>Virtualisation or databases on Intel Xeon Scalable</td><td>1.5 to 2.5 kVA, online unit as the safer default</td></tr>
+<tr><td>Ultra</td><td>One or more GPUs under sustained AI or rendering load</td><td>2.5 to 3.5 kVA or more on an online UPS; confirm against the GPU count</td></tr>
+</tbody>
+</table>
+<p>GPU count and storage count can move a system to either end of its range. See the <a href="https://prostationsystems.com/servers" target="_blank">ProStation server tiers</a> and use the <a href="https://prostationsystems.com/customize" target="_blank">configurator</a> to ask for the measured draw of the exact build.</p>
+<h2>Do not forget these</h2>
+<ul>
+<li><strong>Network gear.</strong> A protected server is useless mid-outage if the switch or router goes dark. A small 600 VA to 1 kVA UPS for the network rack is cheap insurance.</li>
+<li><strong>Automatic shutdown.</strong> The UPS only buys time. Configure the shutdown software so the machine powers down cleanly before the battery ends.</li>
+<li><strong>Redundant supplies.</strong> Two power supplies protect against a supply failure, not a grid failure; read the <a href="https://prostationsystems.com/blog/redundant-power-supply-dual-psu-server-guide" target="_blank">redundant PSU guide</a> for what each one covers.</li>
+<li><strong>Data protection.</strong> Clean power complements, not replaces, RAID and backups; see <a href="https://prostationsystems.com/blog/raid-levels-explained-server-redundancy" target="_blank">RAID levels explained</a>.</li>
+<li><strong>Heat.</strong> A UPS and a loaded workstation in a small room add heat; see <a href="https://prostationsystems.com/blog/why-workstations-thermal-throttle-cooling-guide" target="_blank">why workstations overheat</a>.</li>
+<li><strong>Cost of downtime.</strong> Decide how much protection is worth paying for using the <a href="https://prostationsystems.com/blog/cost-of-server-downtime-warranty-guide" target="_blank">downtime cost and warranty guide</a>.</li>
+</ul>
+<h2>Questions to ask the builder</h2>
+<ul>
+<li>What is the measured sustained draw of this exact configuration?</li>
+<li>Which UPS rating, in watts, do you recommend and for how many minutes of runtime?</li>
+<li>Does the system support remote or automatic shutdown on a UPS signal?</li>
+<li>What does the standard warranty cover, and what is extra? See the <a href="https://prostationsystems.com/warranty" target="_blank">ProStation warranty page</a>, which describes a 1-year hardware warranty with extended plans at additional cost.</li>
+</ul>
+<p>For a sizing conversation, see <a href="https://prostationsystems.com/consulting" target="_blank">ProStation consulting</a> or the <a href="https://prostationsystems.com/use-cases/virtualization" target="_blank">virtualisation</a> and <a href="https://prostationsystems.com/use-cases/ai-ml" target="_blank">AI and ML</a> use cases.</p>
+
+<h2>Frequently asked questions</h2>
+<ul><li><strong>How many kVA UPS does a small business server need?</strong> &mdash; It depends on the real sustained draw and the runtime you want, but a single entry or mid-range tower server typically needs 1 to 2.5 kVA for a clean 10 to 15 minute shutdown window. Measure the draw of your configuration first.</li><li><strong>Should I size the UPS from the power supply rating?</strong> &mdash; No. The supply rating is its maximum capacity, not what the server draws. Size from the measured sustained draw under your workload, then add roughly 25 to 30 percent headroom.</li><li><strong>Is a line-interactive UPS enough for a server?</strong> &mdash; It is fine for a basic file or application server. For virtualisation, databases and long unattended jobs, an online double-conversion UPS is the safer choice because it has zero transfer time.</li><li><strong>How long should the server run on battery?</strong> &mdash; For most single-server setups, 10 to 15 minutes is enough for an automatic clean shutdown. Plan for longer only if the workload cannot tolerate downtime, which needs a bigger battery bank or a generator.</li><li><strong>Does a multi-GPU server need a bigger UPS?</strong> &mdash; Yes. GPUs under sustained load are usually the largest power draw in a high-end build, so plan for roughly 2.5 to 3.5 kVA or more on an online UPS and confirm against the exact GPU count.</li></ul>
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87962-44410</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many kVA UPS does a small business server need?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the real sustained draw and the runtime you want, but a single entry or mid-range tower server typically needs 1 to 2.5 kVA for a clean 10 to 15 minute shutdown window. Measure the draw of your configuration first."}}, {"@type": "Question", "name": "Should I size the UPS from the power supply rating?", "acceptedAnswer": {"@type": "Answer", "text": "No. The supply rating is its maximum capacity, not what the server draws. Size from the measured sustained draw under your workload, then add roughly 25 to 30 percent headroom."}}, {"@type": "Question", "name": "Is a line-interactive UPS enough for a server?", "acceptedAnswer": {"@type": "Answer", "text": "It is fine for a basic file or application server. For virtualisation, databases and long unattended jobs, an online double-conversion UPS is the safer choice because it has zero transfer time."}}, {"@type": "Question", "name": "How long should the server run on battery?", "acceptedAnswer": {"@type": "Answer", "text": "For most single-server setups, 10 to 15 minutes is enough for an automatic clean shutdown. Plan for longer only if the workload cannot tolerate downtime, which needs a bigger battery bank or a generator."}}, {"@type": "Question", "name": "Does a multi-GPU server need a bigger UPS?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. GPUs under sustained load are usually the largest power draw in a high-end build, so plan for roughly 2.5 to 3.5 kVA or more on an online UPS and confirm against the exact GPU count."}}]}</script>
+</body>
+</html>
