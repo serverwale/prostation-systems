@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unreal Engine 5 PC Checklist: Specs, Lumen, Nanite, Builds</title>
+  <meta name="description" content="Epic&#x27;s recommended Unreal Engine 5 hardware, what Lumen and Nanite need, how Epic&#x27;s own reference workstation compares, and how to size a game-dev build.">
+  <link rel="canonical" href="https://serverwale.github.io/prostation-systems/unreal-engine-5-game-dev-workstation-checklist-lumen-nanite.html">
+  <style>
+    :root { --bg:#0A0C10; --card:#14171f; --line:#262b36; --accent:#8B5CF6; --text:#E8EAED; --muted:#9aa1ad; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 64px; }
+    h1 { font-size:2rem; margin:.2em 0; }
+    h2 { font-size:1.25rem; margin:2em 0 .6em; border-bottom:1px solid var(--line); padding-bottom:.3em; }
+    a { color:var(--accent); }
+    ul { padding-left:1.2em; } li { margin:.35em 0; }
+    table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; } th { background:var(--card); }
+    footer { margin-top:40px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; ProStation Systems</a></p>
+<h1>Unreal Engine 5 Workstation Checklist: Epic's Specs, Lumen, Nanite and Build Sizing</h1>
+
+<p>Epic Games publishes the hardware it recommends for Unreal Engine 5, and its own reference workstation is far larger than the baseline. This checklist turns the published figures into a sizing decision. The full guide is ProStation's <a href="https://prostationsystems.com/blog/best-workstation-unreal-engine-5-game-development-india-specs" target="_blank">best workstation for Unreal Engine 5 and game development</a>.</p>
+
+<h2>What Epic recommends</h2>
+<table>
+<thead><tr><th>Item</th><th>Epic's recommended hardware</th></tr></thead>
+<tbody>
+<tr><td>Operating system</td><td>Windows 11</td></tr>
+<tr><td>Processor</td><td>Quad-core Intel or AMD, 2.5 GHz or faster</td></tr>
+<tr><td>Memory</td><td>32 GB RAM</td></tr>
+<tr><td>Graphics memory</td><td>8 GB or more</td></tr>
+<tr><td>Graphics card</td><td>DirectX 12 compatible, with the latest drivers</td></tr>
+</tbody>
+</table>
+<p>For compiling, Epic says a machine with at least 12 to 16 cores is a practical local baseline when you are not using a distributed build solution, and it recommends Unreal Build Accelerator (UBA) for distributed compilation.</p>
+
+<h2>Lumen and Nanite</h2>
+<p>Lumen global illumination, reflections and MegaLights need DirectX 12 and Shader Model 6 enabled in Project Settings, and one of these graphics cards: an AMD RX 6000 series or newer, an Intel Arc A-series or newer, or an NVIDIA RTX 2000 series or newer. Nanite needs Windows with DirectX 12 Agility SDK support. These are entry conditions; how fast a level runs depends on the level.</p>
+
+<h2>Epic's own reference workstation</h2>
+<p>Epic lists a reference system: an AMD Ryzen Threadripper PRO 7985WX, 256 GB of DDR5-4800 ECC RDIMM memory, a 2 TB system drive, a 4 TB data drive and an NVIDIA RTX 4080 with 16 GB. Two honest points. It shows the shape of a serious machine: many cores, lots of memory, a large separate data drive and a 16 GB GPU. And ProStation Systems builds use Intel Xeon processors and ECC DDR4, not AMD or DDR5, so we match the shape, not the exact parts.</p>
+
+<h2>Sizing three builds</h2>
+<table>
+<thead><tr><th>Who</th><th>Suggested ProStation build</th></tr></thead>
+<tbody>
+<tr><td>Solo developer or indie team of two</td><td>Starter with a GPU added: Intel Xeon E, 64 GB ECC DDR4, 1 TB NVMe plus a project drive, one NVIDIA RTX GPU in the 16 GB class</td></tr>
+<tr><td>Small studio, one machine per developer</td><td>Pro: Intel Xeon Scalable, 128 GB ECC DDR4, 2 TB NVMe plus a data drive, GPU in the 16 to 24 GB class</td></tr>
+<tr><td>Shared build and cache server for five or more developers</td><td>Pro or Ultra: many cores, 128 to 256 GB or more ECC DDR4, NVMe in RAID, 10 GbE; a GPU only if your bake pipeline uses one</td></tr>
+</tbody>
+</table>
+<p>These builds are ProStation's own advice. Memory ranges follow our <a href="https://prostationsystems.com/servers" target="_blank">Starter, Pro and Ultra tiers</a>. See <a href="https://prostationsystems.com/blog/how-much-ram-do-you-need-workstation-server-by-profession-ecc-ddr4" target="_blank">how much RAM you need by profession</a>, <a href="https://prostationsystems.com/blog/why-workstations-thermal-throttle-cooling-guide" target="_blank">why workstations throttle under long jobs</a> and the <a href="https://prostationsystems.com/blog/3d-animation-blender-rendering-workstation-guide" target="_blank">3D animation and rendering guide</a>.</p>
+
+<h2>Checklist before you order</h2>
+<ul>
+<li>Engine version, and the size of your largest level.</li>
+<li>Number of developers sharing the project and how long a full build takes today.</li>
+<li>RAM that covers the editor, a code editor, a browser and a bake together.</li>
+<li>A separate NVMe data drive for projects and caches.</li>
+<li>A quote that names the exact GPU, cores, RAM, storage, warranty and delivery time.</li>
+</ul>
+<p>Related: <a href="https://prostationsystems.com/industries/studios-vfx" target="_blank">studios and VFX</a>, the <a href="https://prostationsystems.com/use-cases/video-rendering" target="_blank">video and rendering use case</a>, the <a href="https://prostationsystems.com/warranty" target="_blank">warranty terms</a> and the <a href="https://prostationsystems.com/new-vs-refurbished" target="_blank">new vs refurbished</a> guide.</p>
+
+<h2>FAQ</h2>
+<ul>
+  <li><strong>What are Epic's recommended specs for Unreal Engine 5?</strong> &mdash; Epic's page lists Windows 11, a quad-core Intel or AMD processor at 2.5 GHz or faster, 32 GB of RAM, 8 GB or more of graphics memory and a DirectX 12 compatible graphics card with the latest drivers.</li>
+  <li><strong>Which graphics cards does Lumen support?</strong> &mdash; Epic lists an AMD RX 6000 series or newer, an Intel Arc A-series or newer, or an NVIDIA RTX 2000 series or newer card, with DirectX 12 and Shader Model 6 enabled in Project Settings.</li>
+  <li><strong>How many cores do I need to compile Unreal Engine?</strong> &mdash; Epic says that without a distributed build solution, a machine with at least 12 to 16 cores is a practical local-compile baseline, and that more cores continue to help. It recommends Unreal Build Accelerator for distributed compilation.</li>
+  <li><strong>Can ProStation build a game-development workstation?</strong> &mdash; Yes, as a custom build with Intel Xeon processors and ECC DDR4 memory, specified from your engine version, level size and team, with a 1-year warranty and extended cover available at extra cost.</li>
+</ul>
+<h2>Get a quote</h2>
+<p>Tell us your engine version, level size and team, and book a <a href="https://prostationsystems.com/consulting" target="_blank">free consultation</a> or use the <a href="https://prostationsystems.com/customize" target="_blank">customize form</a>. Quotes usually arrive within 2 hours of a submitted configuration, and builds ship in about 4 working days after you approve the configuration.</p>
+<p style="font-size:.85rem;color:#9aa1ad">Source: Epic Games, <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/hardware-and-software-specifications-for-unreal-engine" rel="nofollow">Hardware and Software Specifications for Unreal Engine</a>, read 29 October 2026. Build sizing is ProStation's own advice.</p>
+
+<footer><strong>ProStation Systems</strong> &mdash; call or WhatsApp <strong>+91-87962-44410</strong>, based in Burari, Delhi 110084, online at <a href="https://prostationsystems.com" target="_blank">prostationsystems.com</a>.</footer>
+  </div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are Epic's recommended specs for Unreal Engine 5?", "acceptedAnswer": {"@type": "Answer", "text": "Epic's page lists Windows 11, a quad-core Intel or AMD processor at 2.5 GHz or faster, 32 GB of RAM, 8 GB or more of graphics memory and a DirectX 12 compatible graphics card with the latest drivers."}}, {"@type": "Question", "name": "Which graphics cards does Lumen support?", "acceptedAnswer": {"@type": "Answer", "text": "Epic lists an AMD RX 6000 series or newer, an Intel Arc A-series or newer, or an NVIDIA RTX 2000 series or newer card, with DirectX 12 and Shader Model 6 enabled in Project Settings."}}, {"@type": "Question", "name": "How many cores do I need to compile Unreal Engine?", "acceptedAnswer": {"@type": "Answer", "text": "Epic says that without a distributed build solution, a machine with at least 12 to 16 cores is a practical local-compile baseline, and that more cores continue to help. It recommends Unreal Build Accelerator for distributed compilation."}}, {"@type": "Question", "name": "Can ProStation build a game-development workstation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, as a custom build with Intel Xeon processors and ECC DDR4 memory, specified from your engine version, level size and team, with a 1-year warranty and extended cover available at extra cost."}}]}</script>
+</body>
+</html>
